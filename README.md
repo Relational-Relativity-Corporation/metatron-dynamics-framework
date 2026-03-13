@@ -12,15 +12,15 @@ This repository contains the foundational documents and demonstration links for 
 
 ## Documents
 
-### [Mathematics of Information System Stability](https://github.com/Relational-Relativity-Corporation/metatron-dynamics-framework/blob/main/docs/mathematics-of-information-system-stability.html)
+### [Mathematics of Information System Stability](https://github.com/Relational-Relativity-Corporation/metatron-dynamics-framework/blob/main/docs/mathematics-of-information-system-stability.pdf)
 
-*White Paper — Robin Macomber, Founder | Bruce Stephenson, CTO, Energy Physics* | [PDF](https://github.com/Relational-Relativity-Corporation/metatron-dynamics-framework/blob/main/docs/mathematics-of-information-system-stability.pdf)
+*White Paper — Robin Macomber, Founder | Bruce Stephenson, CTO, Energy Physics*
 
 Derives the stability conditions for bounded information processing systems under acceleration. Formalizes the admissibility gap — the structural consequence of beginning information processing without declaring the domain within which outputs are valid — and demonstrates that it is the common cause underlying supply chain cascade failures, machine learning model drift, financial contagion, and large language model generation drift.
 
-### [The Clarity Dividend](https://github.com/Relational-Relativity-Corporation/metatron-dynamics-framework/blob/main/docs/the-clarity-dividend.html)
+### [The Clarity Dividend](https://github.com/Relational-Relativity-Corporation/metatron-dynamics-framework/blob/main/docs/the-clarity-dividend.pdf)
 
-*Investor Document — Metatron Dynamics* | [PDF](https://github.com/Relational-Relativity-Corporation/metatron-dynamics-framework/blob/main/docs/the-clarity-dividend.pdf)
+*Investor Document — Metatron Dynamics*
 
 Presents the economic case for formal domain declaration as an operational primitive. Documents 88-step and 82-step early warning lead times across independently verified simulation environments. Positions Metatron Dynamics within the lineage of Shannon, Turing, and Wiener.
 
