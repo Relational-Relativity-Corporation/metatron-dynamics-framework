@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Relational Structure in Magnetohydrodynamic Systems — Metatron Dynamics</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-chtml.min.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg:      #0a0a0a;
+    --bg2:     #111111;
+    --bg3:     #181818;
+    --border:  rgba(255,255,255,0.08);
+    --border2: rgba(255,255,255,0.14);
+    --text:    #f0ede6;
+    --muted:   #888783;
+    --accent:  #c9b97a;
+    --mono:    'Courier New', monospace;
+    --sans:    -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  body.light {
+    --bg:      #ffffff;
+    --bg2:     #f7f6f3;
+    --bg3:     #eeece8;
+    --border:  rgba(0,0,0,0.10);
+    --border2: rgba(0,0,0,0.18);
+    --text:    #1a1a1a;
+    --muted:   #555550;
+    --accent:  #7a6830;
+  }
+  @media print {
+    :root {
+      --bg:      #ffffff;
+      --bg2:     #f7f6f3;
+      --bg3:     #eeece8;
+      --border:  rgba(0,0,0,0.10);
+      --border2: rgba(0,0,0,0.18);
+      --text:    #1a1a1a;
+      --muted:   #333330;
+      --accent:  #5a4e20;
+    }
+    .theme-toggle { display: none !important; }
+    .page { padding: 2rem 0; }
+    .section { page-break-inside: avoid; }
+    .operator-section { page-break-inside: avoid; }
+    .callout { page-break-inside: avoid; }
+    a { color: var(--muted) !important; text-decoration: none; }
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.75;
+    padding: 0 1.5rem;
+    transition: background 0.2s, color 0.2s;
+  }
+  .page { max-width: 820px; margin: 0 auto; padding: 5rem 0 6rem; }
+  .theme-toggle {
+    position: fixed; top: 1.25rem; right: 1.5rem;
+    background: var(--bg2); border: 0.5px solid var(--border2);
+    color: var(--muted); font-size: 12px; letter-spacing: 0.08em;
+    padding: 6px 14px; border-radius: 4px; cursor: pointer;
+    font-family: var(--mono); transition: all 0.2s;
+    z-index: 100;
+  }
+  .theme-toggle:hover { color: var(--text); border-color: var(--accent); }
+  .paper-label {
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 2rem;
+  }
+  .paper-title {
+    font-size: clamp(1.7rem, 4vw, 2.6rem);
+    font-weight: 400; line-height: 1.18;
+    letter-spacing: -0.02em; color: var(--text);
+    margin-bottom: 1.25rem;
+  }
+  .paper-subtitle {
+    font-size: 1.05rem; color: var(--muted);
+    margin-bottom: 2.5rem; line-height: 1.7;
+  }
+  .meta {
+    font-size: 13px; color: var(--muted);
+    border-top: 0.5px solid var(--border);
+    padding-top: 1.25rem; margin-bottom: 3.5rem;
+    display: flex; gap: 2rem; flex-wrap: wrap;
+  }
+  .abstract {
+    background: var(--bg2);
+    border: 0.5px solid var(--border);
+    border-left: 2px solid var(--accent);
+    border-radius: 0 6px 6px 0;
+    padding: 1.5rem 1.75rem;
+    margin-bottom: 4rem;
+    font-size: 0.95rem; color: var(--muted); line-height: 1.8;
+  }
+  .abstract strong {
+    color: var(--accent); font-weight: 500; font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    display: block; margin-bottom: 0.75rem;
+  }
+  .section { margin-bottom: 4rem; }
+  .section-label {
+    font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 0.75rem;
+  }
+  h2 {
+    font-size: 1.45rem; font-weight: 400;
+    letter-spacing: -0.01em; color: var(--text);
+    margin-bottom: 1.25rem; line-height: 1.3;
+  }
+  h3 { font-size: 1.05rem; font-weight: 500; color: var(--text); margin: 2rem 0 0.75rem; }
+  h4 {
+    font-size: 11px; font-weight: 500; color: var(--accent);
+    letter-spacing: 0.04em; margin: 1.5rem 0 0.5rem; text-transform: uppercase;
+  }
+  p { color: var(--muted); margin-bottom: 1rem; }
+  p:last-child { margin-bottom: 0; }
+  em { color: var(--text); font-style: italic; }
+  .eq-block {
+    background: var(--bg2); border: 0.5px solid var(--border);
+    border-radius: 4px; padding: 1.25rem 1.5rem;
+    margin: 1.5rem 0; overflow-x: auto; font-size: 1.05rem;
+  }
+  .eq-label {
+    font-family: var(--mono); font-size: 11px;
+    color: var(--muted); float: right; margin-top: 0.15rem;
+  }
+  .operator-section {
+    background: var(--bg2); border: 0.5px solid var(--border);
+    border-radius: 6px; padding: 2rem; margin: 2rem 0;
+  }
+  .op-row {
+    display: flex; align-items: flex-start; gap: 1.25rem;
+    padding: 1.25rem 0; border-bottom: 0.5px solid var(--border);
+  }
+  .op-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .op-badge {
+    flex-shrink: 0; width: 38px; height: 38px;
+    background: var(--bg3); border: 0.5px solid var(--border2);
+    border-radius: 4px; display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono); font-size: 15px; font-weight: 500; color: var(--accent);
+  }
+  .op-content h4 { margin-top: 0; }
+  .op-content p { font-size: 14px; margin-bottom: 0.5rem; }
+  .op-content p:last-child { margin-bottom: 0; }
+  .status {
+    display: inline-block; font-size: 10px; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 2px 7px; border-radius: 3px;
+    margin-bottom: 0.5rem; font-family: var(--mono);
+  }
+  .status-strong { background: rgba(201,185,122,0.1); color: var(--accent); border: 0.5px solid rgba(201,185,122,0.25); }
+  .status-interp { background: rgba(136,135,131,0.1); color: var(--muted); border: 0.5px solid rgba(136,135,131,0.25); }
+  .callout {
+    background: var(--bg2); border: 0.5px solid var(--border);
+    border-left: 2px solid var(--border2);
+    border-radius: 0 4px 4px 0; padding: 1rem 1.25rem;
+    margin: 1.5rem 0; font-size: 14px; color: var(--muted); line-height: 1.7;
+  }
+  .callout.warn { border-left-color: rgba(201,185,122,0.4); }
+  table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 14px; }
+  th {
+    font-size: 11px; letter-spacing: 0.1em; color: var(--muted);
+    text-transform: uppercase; font-weight: 400;
+    text-align: left; padding: 0.5rem 1rem;
+    border-bottom: 0.5px solid var(--border);
+  }
+  td {
+    padding: 0.85rem 1rem; border-bottom: 0.5px solid var(--border);
+    vertical-align: top; color: var(--muted);
+  }
+  tr:last-child td { border-bottom: none; }
+  td:first-child { color: var(--text); font-family: var(--mono); font-size: 13px; }
+  hr { border: none; border-top: 0.5px solid var(--border); margin: 3rem 0; }
+  footer {
+    border-top: 0.5px solid var(--border); padding-top: 2rem; margin-top: 4rem;
+    font-size: 12px; color: var(--muted);
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+  }
+  footer a { color: var(--muted); }
+  @media (max-width: 600px) {
+    .op-row { flex-direction: column; }
+    .meta { flex-direction: column; gap: 0.5rem; }
+  }
+</style>
+</head>
+<body>
+<button class="theme-toggle" onclick="document.body.classList.toggle('light');this.textContent=document.body.classList.contains('light')?'Dark mode':'Light mode'">Light mode</button>
+<div class="page">
+
+  <div class="paper-label">Metatron Dynamics · Working Paper</div>
+  <h1 class="paper-title">Relational Structure in Magnetohydrodynamic Systems</h1>
+  <p class="paper-subtitle">A proposed ABRCE operator mapping, admissibility conditions, and a structured detection framework for pre-critical monitoring in fusion and plasma environments</p>
+  <div class="meta">
+    <span>Robin Macomber · Founder, Metatron Dynamics</span>
+    <span>Bruce Stephenson · CTO, Metatron Dynamics</span>
+    <span>2026</span>
+  </div>
+
+  <div class="abstract">
+    <strong>Abstract</strong>
+    Magnetohydrodynamics (MHD) exhibits structural features — a mandatory solenoidal field constraint, topological invariants, and relational stress composition — that map coherently onto the ABRCE invariant relational kernel developed by Metatron Dynamics. We propose a formal operator mapping between the ABRCE framework and the governing equations of resistive MHD, and assess each mapping's physical grounding. Two mappings are strongly grounded: the solenoidal constraint \(\nabla \cdot \mathbf{B} = 0\) as a domain admissibility condition (operator \(A\)), and the Maxwell stress tensor as relational composition (operator \(C\)). Two are explicitly interpretive reframings of standard physics: the \(\mathbf{v} \times \mathbf{B}\) coupling as relational binding (operator \(B\)), and magnetic helicity as a chosen relational invariant (operator \(R\)). From this mapping we derive a proposed pre-critical detection heuristic — a composite field \(\Phi(t)\) monitoring the current density difference field and current helicity — and argue that this approach monitors structural precursors at a layer upstream of conventional energy-based diagnostics. This is a proposed detection methodology, not a validated predictive framework. Quantitative demonstration in MHD simulation remains as necessary future work. Cross-domain structural analogies from supply chain and robotics simulations are noted as motivation for the approach, not as formal validation of transferability.
+  </div>
+
+  <div class="section">
+    <div class="section-label">§1</div>
+    <h2>Introduction</h2>
+    <p>The ABRCE invariant relational kernel is a formal framework for bounded information processing in which relationships between system elements are treated as the primary computational primitive. Domain declaration precedes all operations; no claim is made beyond the declared domain; structural invariants are identified and monitored as more persistent signals than energetic observables.</p>
+    <p>This paper proposes a mapping between the ABRCE operator sequence and the governing equations of magnetohydrodynamics. The motivation for this mapping is the observation that MHD exhibits structural features that are unusually well-suited to a relational framing: the solenoidal constraint forbids isolated magnetic sources, making field configurations inherently relational; magnetic helicity provides a topological invariant more persistent than the energy; and the Maxwell stress tensor encodes force structure as a composed relational quantity rather than a local field property.</p>
+    <p>We do not claim that ABRCE is derivable from MHD physics, or that the mapping constitutes new physics. We claim that the mapping is coherent, that two of the five operator assignments are physically well-grounded, and that the resulting detection framework — monitoring the current density difference field and current helicity ahead of energy diagnostics — is a structured hypothesis worth quantitative investigation, with direct relevance to disruption prediction in ITER-class fusion devices.</p>
+    <p>Section §2 establishes the governing equations. Section §3 develops the ABRCE operator mapping with explicit status assessments for each assignment. Section §4 characterizes criticality in MHD, with emphasis on the tearing mode instability and tokamak disruptions. Section §5 applies the admissibility framework to the resistive MHD regime. Section §6 proposes the pre-critical detection framework and its application to ITER. Section §7 addresses cross-domain structural analogies. Section §8 discusses implications and open questions. Section §9 concludes.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-label">§2</div>
+    <h2>MHD Governing Equations</h2>
+    <p>We work in SI units. The resistive MHD system for a compressible conducting fluid of mass density \(\rho\), velocity field \(\mathbf{v}\), magnetic field \(\mathbf{B}\), pressure \(p\), and resistivity \(\eta\) is:</p>
+    <h3>Mass continuity</h3>
+    <div class="eq-block"><span class="eq-label">(2.1)</span>\[ \frac{\partial \rho}{\partial t} + \nabla \cdot (\rho \mathbf{v}) = 0 \]</div>
+    <h3>Momentum equation</h3>
+    <div class="eq-block"><span class="eq-label">(2.2)</span>\[ \rho \left( \frac{\partial \mathbf{v}}{\partial t} + (\mathbf{v} \cdot \nabla)\mathbf{v} \right) = -\nabla p + \mathbf{J} \times \mathbf{B} \]</div>
+    <p>where by Ampère's law in the MHD limit:</p>
+    <div class="eq-block"><span class="eq-label">(2.3)</span>\[ \mathbf{J} = \frac{1}{\mu_0} \nabla \times \mathbf{B} \]</div>
+    <h3>Induction equation</h3>
+    <div class="eq-block"><span class="eq-label">(2.4)</span>\[ \frac{\partial \mathbf{B}}{\partial t} = \nabla \times (\mathbf{v} \times \mathbf{B}) - \nabla \times (\eta \nabla \times \mathbf{B}) \]</div>
+    <p>In the ideal limit \(\eta \rightarrow 0\), Alfvén's frozen-in flux theorem holds: magnetic field lines are advected with the fluid and their topological connectivity is preserved.</p>
+    <h3>Solenoidal constraint</h3>
+    <div class="eq-block"><span class="eq-label">(2.5)</span>\[ \nabla \cdot \mathbf{B} = 0 \quad \forall \, \mathbf{x} \in \Omega, \, \forall \, t \]</div>
+    <p>This is not a dynamic equation. It carries no time derivative and is not automatically preserved by finite-difference time integration schemes. Its status within the ABRCE framework is the subject of §3.</p>
+    <h3>Maxwell stress tensor</h3>
+    <div class="eq-block"><span class="eq-label">(2.6)</span>\[ T_{ij} = \frac{1}{\mu_0}\left( B_i B_j - \frac{1}{2}\delta_{ij} B^2 \right) \]</div>
+    <h3>Magnetic helicity</h3>
+    <div class="eq-block"><span class="eq-label">(2.7)</span>\[ \mathcal{H} = \int_\Omega \mathbf{A} \cdot \mathbf{B} \, dV \quad \text{where} \quad \mathbf{B} = \nabla \times \mathbf{A} \]</div>
+    <p>Under ideal MHD, \(d\mathcal{H}/dt = 0\). Under resistive MHD, helicity decays at rate \(2\eta \int \mathbf{J} \cdot \mathbf{B} \, dV\) — more slowly than magnetic energy. MHD systems conserve additional global quantities; helicity is selected here for its topological character and robustness under resistive perturbation.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-label">§3</div>
+    <h2>Proposed ABRCE Operator Mapping</h2>
+    <p>The ABRCE kernel defines information processing as the strict composition:</p>
+    <div class="eq-block">\[ E(x, \rho) = C\!\left(R\!\left(B(A(x)),\, \rho\right)\right) \]</div>
+    <p>All operations are bounded over declared domain \(D\):</p>
+    <div class="eq-block">\[ D := \{\, \mathbf{x} \in \mathbb{R}^n \;\mid\; n < \infty \;\text{ and }\; |x_i| < \infty \;\; \forall i \,\} \]</div>
+    <p>We propose the following operator assignments. Each is accompanied by an explicit status assessment distinguishing physically grounded mappings from interpretive reframings.</p>
+    <div class="operator-section">
+      <div class="op-row">
+        <div class="op-badge">A</div>
+        <div class="op-content">
+          <h4>Domain Declaration</h4>
+          <span class="status status-strong">Physically grounded</span>
+          <p>Operator \(A\) establishes the domain \(D\) within which all subsequent operations are valid. The solenoidal constraint \(\nabla \cdot \mathbf{B} = 0\) maps directly and strongly to this role. In computational MHD, enforcing \(\nabla \cdot \mathbf{B} = 0\) at initialization and maintaining it throughout integration is a mandatory admissibility condition. Divergence-cleaning methods exist precisely because violation of this condition produces physically spurious forces that propagate through the system while passing all local conservation checks. The MHD literature supports reframing this constraint as an operational domain condition: processing that begins with \(\nabla \cdot \mathbf{B} \neq 0\) is outside its declared domain, regardless of local output validity.</p>
+        </div>
+      </div>
+      <div class="op-row">
+        <div class="op-badge">B</div>
+        <div class="op-content">
+          <h4>Binding — \(\mathbf{v} \times \mathbf{B}\) and \(\mathbf{J} \times \mathbf{B}\) Coupling</h4>
+          <span class="status status-interp">Interpretive reframing</span>
+          <p>The bidirectional Lorentz coupling between the fluid velocity and magnetic field is here reframed as the ABRCE binding operator. Standard physics describes these as coupling terms in a system of coupled PDEs; neither field is ontologically primary. The ABRCE framing treats this coupling as relational binding, assigning it operator-layer status upstream of the relational invariant. This is philosophically consistent with the ABRCE framework's ontological commitments but is not derivable from the physics equations. It is a chosen reinterpretation, not a derivation.</p>
+        </div>
+      </div>
+      <div class="op-row">
+        <div class="op-badge">R</div>
+        <div class="op-content">
+          <h4>Relational Invariant — Magnetic Helicity \(\mathcal{H}\)</h4>
+          <span class="status status-interp">Interpretive — helicity as chosen invariant, not the invariant</span>
+          <p>Magnetic helicity is selected as the operator-\(R\) quantity on the grounds that it is topological, global, and more persistent than energy under resistive perturbation. These properties are physically correct. However, MHD systems possess multiple global invariants, and helicity is not always the dominant or most diagnostically useful quantity. The assignment of helicity to operator \(R\) is a motivated choice within the ABRCE framing, not a unique physical identification.</p>
+        </div>
+      </div>
+      <div class="op-row">
+        <div class="op-badge">C</div>
+        <div class="op-content">
+          <h4>Composition — Maxwell Stress Tensor \(T_{ij}\)</h4>
+          <span class="status status-strong">Physically grounded</span>
+          <p>The Maxwell stress tensor \(T_{ij} = \mu_0^{-1}(B_i B_j - \frac{1}{2}\delta_{ij}B^2)\) encodes the full relational stress structure of the magnetic field configuration. No component of \(T_{ij}\) is computable from a single field value; each encodes directed relational stress between field orientations — tension along field lines and isotropic magnetic pressure. This identification is both physically accurate and conceptually well-grounded.</p>
+        </div>
+      </div>
+      <div class="op-row">
+        <div class="op-badge">E</div>
+        <div class="op-content">
+          <h4>Emission — Observable Diagnostics</h4>
+          <span class="status status-interp">Conceptual — framework claim, not physics statement</span>
+          <p>Measured quantities — velocity fields, magnetic probe signals, soft X-ray emission, energy release rates — are assigned to operator \(E\) as the system's observable outputs. The claim that these are downstream of operators \(A\) through \(R\) is a framework-layer statement about information structure, not a derivable consequence of the MHD equations. The practical consequence — that monitoring only emission-layer quantities provides later warning — is the central testable claim of this framework.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">§4</div>
+    <h2>Criticality in MHD Systems</h2>
+    <h3>Magnetic reconnection</h3>
+    <p>Magnetic reconnection is the process by which field line topology changes — lines break and reform with different connectivity, releasing stored magnetic energy rapidly. It underlies solar flares, magnetospheric substorms, and tokamak disruptions. The structural precursor is the formation of a current sheet in which \(\mathbf{J}\) becomes large and the resistive term becomes locally dominant, breaking the frozen-in condition.</p>
+    <h3>Tearing mode instability and the Lundquist threshold</h3>
+    <p>The Lundquist number characterizes the ratio of resistive to Alfvénic timescales:</p>
+    <div class="eq-block"><span class="eq-label">(4.1)</span>\[ S = \frac{\tau_R}{\tau_A} = \frac{\mu_0 L v_A}{\eta} \]</div>
+    <p>The tearing mode becomes unstable when the stability parameter \(\Delta'\) satisfies \(\Delta' > 0\). The linear growth rate scales as:</p>
+    <div class="eq-block"><span class="eq-label">(4.2)</span>\[ \gamma \sim \tau_A^{-1} \left(\Delta' a\right)^{4/5} S^{-3/5} \]</div>
+    <p>At \(S \gtrsim 10^4\), the Sweet-Parker current sheet is itself Plasmoid-unstable, accelerating reconnection through a cascade of secondary magnetic islands. In solar corona and tokamak plasmas, \(S \sim 10^8\)–\(10^{14}\).</p>
+    <h3>Tokamak disruptions and ITER</h3>
+    <p>In tokamak geometry, instabilities are characterized by poloidal and toroidal mode numbers \((m, n)\), resonant at the rational surface \(q = m/n\). A single major disruption in ITER releases approximately 350 MJ of thermal energy and up to 10 MA of runaway electron current into the first wall within milliseconds. Disruption mitigation systems require warning times on the order of 20–30 ms. Current diagnostic systems typically provide anomalous signal 5–15 ms before thermal quench. Closing this gap is an open engineering and physics problem.</p>
+    <div class="callout warn">The ABRCE framework proposes that the gap between available and required warning time is structural rather than purely instrumental — that monitoring at the binding and invariant layers provides signal earlier than monitoring at the emission layer. This is the central hypothesis. It has not been quantitatively demonstrated in MHD simulation or experiment and should be understood as a structured research proposal.</div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">§5</div>
+    <h2>Admissibility in Resistive MHD</h2>
+    <h3>Divergence error propagation</h3>
+    <p>The time evolution of the divergence field in numerical MHD follows:</p>
+    <div class="eq-block"><span class="eq-label">(5.1)</span>\[ \frac{\partial}{\partial t}(\nabla \cdot \mathbf{B}) = \eta \nabla^2 (\nabla \cdot \mathbf{B}) \]</div>
+    <p>Divergence errors diffuse at resistive rate but do not convect — they accumulate, producing unphysical monopole source terms in the momentum equation that are locally small but globally corrupt the stress tensor and can seed reconnection at unintended locations. This constitutes a computational instance of the admissibility gap: domain violation propagates silently through a system in which all local conservation checks remain satisfied.</p>
+    <h3>Current density as a proposed pre-critical field</h3>
+    <p>As the system approaches reconnection onset, the current density develops a sheet-like concentration structure whose geometry encodes the local stability parameter \(\Delta'\). We define the current density difference field:</p>
+    <div class="eq-block"><span class="eq-label">(5.2)</span>\[ \delta(\mathbf{J}, t) = \mathbf{J}(t) - \mathbf{J}(t - \Delta t) \]</div>
+    <p>We propose that \(\delta(\mathbf{J}, t)\) develops coherent spatial structure in the pre-current-sheet region while global energy diagnostics remain within nominal bounds. Whether it provides earlier or superior detection compared to existing diagnostics is a quantitative question requiring simulation and experimental validation.</p>
+    <h3>Helicity dissipation as a proposed domain transition signal</h3>
+    <p>The helicity dissipation rate in a closed system is:</p>
+    <div class="eq-block"><span class="eq-label">(5.3)</span>\[ \frac{d\mathcal{H}}{dt} = -2\eta \int_\Omega \mathbf{J} \cdot \mathbf{B} \, dV \]</div>
+    <p>The current helicity integrand \(\mathbf{J} \cdot \mathbf{B}\) increases as field lines are driven toward a force-free configuration preceding reconnection. An anomalous rate of change in \(\int \mathbf{J} \cdot \mathbf{B} \, dV\) may provide an operator-\(R\) layer signal preceding the thermal quench. The specific diagnostic utility of this quantity relative to established precursors has not been quantified in this work.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-label">§6</div>
+    <h2>A Proposed Detection Framework for ITER</h2>
+    <h3>Monitoring layer hierarchy</h3>
+    <table>
+      <thead><tr><th>Field</th><th>Operator layer</th><th>Physical character</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>\(\nabla \cdot \mathbf{B}\)</td><td>A — Domain</td><td>Admissibility condition; monopole accumulation in numerical schemes</td><td>Physically grounded</td></tr>
+        <tr><td>\(\delta(\mathbf{J}, t)\)</td><td>B — Binding</td><td>Current density evolution; proposed pre-sheet structural indicator</td><td>Hypothesis — not yet validated</td></tr>
+        <tr><td>\(\int \mathbf{J} \cdot \mathbf{B} \, dV\)</td><td>R — Invariant</td><td>Current helicity; anomalous dissipation rate preceding quench</td><td>Hypothesis — literature-consistent</td></tr>
+        <tr><td>\(T_{ij}\) anisotropy</td><td>C — Composition</td><td>Stress tensor anisotropy ahead of force imbalance</td><td>Interpretive — not yet demonstrated</td></tr>
+        <tr><td>\(d\mathcal{W}/dt\)</td><td>E — Emission</td><td>Magnetic energy release rate; current primary diagnostic basis</td><td>Established — used in existing systems</td></tr>
+      </tbody>
+    </table>
+    <h3>Composite precursor field</h3>
+    <div class="eq-block"><span class="eq-label">(6.1)</span>\[ \Phi(t) = \alpha_1 \|\delta(\mathbf{J}, t)\|_{L^2(\Omega)} + \alpha_2 \left|\frac{d}{dt}\int_\Omega \mathbf{J} \cdot \mathbf{B} \, dV\right| + \alpha_3 \left\|\nabla \cdot \mathbf{B}\right\|_{L^2(\Omega)} \]</div>
+    <p>where \(\alpha_1, \alpha_2, \alpha_3 > 0\) are domain-calibrated weights. Threshold exceedance \(\Phi(t) > \Phi_{\text{crit}}\) is proposed as a structural pre-warning event. Weights should be calibrated from historical disruption databases (JET, ASDEX Upgrade) and evaluated prospectively on held-out data before being presented as a validated predictor.</p>
+    <div class="callout warn">No quantitative claim is made here about the lead time this framework provides in real or simulated MHD systems. The argument is structural: if the current density difference field and current helicity develop anomalous signatures before energy-based diagnostics, the framework provides earlier warning by construction. Whether this conditional holds — and by how much — is the central empirical question this paper motivates.</div>
+    <h3>Dimensional composition of \(\Phi(t)\)</h3>
+    <p>The terms composing \(\Phi(t)\) are not dimensionally identical. This is intentional and does not constitute a physical inconsistency, because \(\Phi(t)\) is not a conserved physical scalar — it is a composite detection field. Its terms are not required to share units; they are required to share operator-layer membership and directional sensitivity to pre-critical structural change. In practice, each term should be normalised to its own baseline variance before summation, making the composite dimensionless and directly comparable across runs and parameter regimes.</p>
+    <h3>Instrumentation note</h3>
+    <p>Evaluation of \(\Phi(t)\) in an ITER-class device would require continuous computation of \(\delta(\mathbf{J}, t)\) from existing magnetic probe arrays and current helicity from Thomson scattering and motional Stark effect diagnostics. No new diagnostic hardware is implied by this proposal — only a reorientation of the signal processing layer from emission-layer energy monitoring toward binding-layer structural monitoring.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-label">§7</div>
+    <h2>Cross-Domain Structural Analogy</h2>
+    <p>The ABRCE relational difference field has been applied in two non-MHD simulation environments, producing results that motivate the MHD application without constituting formal validation of transferability:</p>
+    <table>
+      <thead><tr><th>Domain</th><th>Detection field</th><th>Lead time</th><th>Repository</th></tr></thead>
+      <tbody>
+        <tr><td>Multi-agent supply chain</td><td>\(\delta(\text{inventory}, t)\)</td><td>88 steps ahead of cascade</td><td>supply-chain-early-warning-demo</td></tr>
+        <tr><td>Multi-robot load distribution</td><td>\(\delta(\text{load}, t)\)</td><td>82 steps ahead of failure</td><td>robotics-instability-detection-demo</td></tr>
+      </tbody>
+    </table>
+    <p>These results demonstrate that relational difference fields at the binding layer provide pre-critical signal in those specific simulation environments. They do not constitute physical homology with MHD systems, and no formal proof of structural transferability across domains has been established. They are presented as motivating evidence for the research direction, not as cross-domain validation of the detection framework.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-label">§8</div>
+    <h2>Implications and Open Questions</h2>
+    <h3>Simulation program</h3>
+    <p>The minimum necessary demonstration for this framework is: a resistive MHD simulation of a tearing-mode-unstable current sheet, with simultaneous tracking of \(\delta(\mathbf{J}, t)\), the current helicity, and the magnetic energy release rate, showing that \(\Phi(t)\) crosses a threshold measurably before the energy-based signal. This should be conducted on standard benchmark configurations (Harris sheet, cylindrical tokamak equilibrium) before any ITER-specific claims are made.</p>
+    <h3>Gauge invariance and open field line geometry</h3>
+    <p>Magnetic helicity \(\mathcal{H} = \int \mathbf{A} \cdot \mathbf{B} \, dV\) is gauge-dependent for open field lines crossing \(\partial\Omega\). In tokamak geometry, toroidal topology ensures relative helicity is gauge-invariant and physically well-defined. Any application to open field line configurations requires careful specification of the gauge and boundary geometry as part of the operator-\(A\) domain declaration.</p>
+    <h3>Plasmoid instability and multi-scale structure</h3>
+    <p>At high Lundquist number, the current sheet develops a hierarchy of secondary magnetic islands before the primary reconnection event. The global helicity integral \(\mathcal{H}\) may not resolve this hierarchy. A multi-scale helicity decomposition, or a scale-resolved version of \(\delta(\mathbf{J}, t)\), may be required to track pre-Plasmoid structural evolution.</p>
+    <h3>Comparison against existing precursor diagnostics</h3>
+    <p>ITER disruption prediction research has produced a range of established precursor indicators: locked mode amplitude, \(n=1\) Mirnov coil power spectra, neoclassical tearing mode onset, and machine learning classifiers trained on multi-diagnostic signals. Any claim that \(\Phi(t)\) improves disruption prediction must be benchmarked against these existing methods. The value of this framework will be demonstrated by comparative performance, not by structural argument alone.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-label">§9</div>
+    <h2>Conclusion</h2>
+    <p>We have proposed a mapping between the ABRCE invariant relational kernel and the governing equations of resistive MHD. Two of the five operator assignments are physically well-grounded: the solenoidal constraint as a domain admissibility condition (operator \(A\)), and the Maxwell stress tensor as relational composition (operator \(C\)). Two are explicit interpretive reframings: the \(\mathbf{v} \times \mathbf{B}\) coupling as relational binding (operator \(B\)), and magnetic helicity as a chosen relational invariant (operator \(R\)). The emission-layer assignment (operator \(E\)) is a framework-layer conceptual claim whose practical consequence — that earlier operators provide earlier warning — is the central testable prediction of this work.</p>
+    <p>From this mapping we derive a proposed composite pre-critical detection field \(\Phi(t)\) that monitors current density evolution and current helicity as structural precursors to magnetic reconnection and tokamak disruption. This is a detection methodology proposal, not a validated predictive framework. The specific quantitative lead time this approach provides in MHD systems is unknown and constitutes the primary open question motivating a simulation-based research program.</p>
+    <p>The honest summary of this paper's contribution is: a coherent structural reinterpretation of MHD using the ABRCE relational framework, a proposed detection heuristic motivated by that reinterpretation, and a clear statement of what must be demonstrated before the heuristic can be called validated. That is a useful starting point. It is not a finished result.</p>
+  </div>
+
+  <hr>
+  <footer>
+    <span>© 2026 Metatron Dynamics · <a href="https://relationalrelativity.dev">relationalrelativity.dev</a></span>
+    <span><a href="https://github.com/Relational-Relativity-Corporation">github.com/Relational-Relativity-Corporation</a></span>
+  </footer>
+
+</div>
+</body>
+</html>
