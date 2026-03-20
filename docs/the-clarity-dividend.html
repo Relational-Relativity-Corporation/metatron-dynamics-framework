@@ -39,7 +39,6 @@ window.MathJax = {
     padding: 3rem 2.5rem 5rem;
   }
 
-  /* COVER */
   .cover {
     text-align: center;
     padding: 4rem 0 3.5rem;
@@ -73,7 +72,6 @@ window.MathJax = {
   .cover-meta strong { color: var(--mid); }
   .cover-meta a { color: var(--accent2); text-decoration: none; }
 
-  /* SECTIONS */
   .section { margin-bottom: 3rem; }
 
   h2 {
@@ -99,7 +97,6 @@ window.MathJax = {
 
   p { margin-bottom: 1rem; }
 
-  /* PULL QUOTE */
   .pull {
     border-left: 3px solid var(--accent2);
     padding: 0.6rem 1.2rem;
@@ -111,7 +108,6 @@ window.MathJax = {
     border-radius: 0 4px 4px 0;
   }
 
-  /* TABLES */
   .tbl-wrap { overflow-x: auto; margin: 1.5rem 0; }
   table { width: 100%; border-collapse: collapse; font-family: 'Inter', sans-serif; font-size: 0.85rem; }
   thead tr { background: var(--accent); color: #fff; }
@@ -121,14 +117,12 @@ window.MathJax = {
   tbody td { padding: 0.55rem 0.9rem; vertical-align: top; line-height: 1.5; }
   tbody td:first-child { font-weight: 500; color: var(--accent); }
 
-  /* STAT CARDS */
   .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
   .stat-card { background: var(--highlight); border: 1px solid var(--rule); border-top: 3px solid var(--accent2); border-radius: 4px; padding: 1rem 1.1rem; }
   .stat-num { font-family: 'Inter', sans-serif; font-size: 1.5rem; font-weight: 600; color: var(--accent); line-height: 1.1; margin-bottom: 0.3rem; }
   .stat-label { font-family: 'Inter', sans-serif; font-size: 0.75rem; color: var(--muted); line-height: 1.4; }
   .stat-source { font-family: 'Inter', sans-serif; font-size: 0.68rem; color: var(--muted); margin-top: 0.4rem; font-style: italic; }
 
-  /* MATH BLOCK */
   .math-block {
     background: var(--panel);
     border: 1px solid var(--rule);
@@ -141,12 +135,10 @@ window.MathJax = {
   }
   .math-label { font-family: 'Inter', sans-serif; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; }
 
-  /* OPERATOR SEQUENCE */
   .op-seq { display: flex; align-items: center; justify-content: center; gap: 0.4rem; flex-wrap: wrap; margin: 1rem 0 0.5rem; font-family: 'Inter', sans-serif; font-size: 0.9rem; }
   .op-badge { background: var(--accent); color: #fff; width: 2rem; height: 2rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 0.85rem; }
   .op-arrow { color: var(--muted); font-size: 1rem; }
 
-  /* COMPARISON */
   .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
   .compare-col { border: 1px solid var(--rule); border-radius: 4px; overflow: hidden; }
   .compare-head { font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.5rem 0.9rem; }
@@ -158,7 +150,6 @@ window.MathJax = {
   .compare-body li:last-child { border-bottom: none; }
   .compare-col.abrce .compare-body li { color: var(--accent); }
 
-  /* LEAD TIME */
   .lead-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
   .lead-card { background: var(--highlight); border: 1px solid var(--rule); border-radius: 4px; padding: 1.1rem 1.2rem; }
   .lead-domain { font-family: 'Inter', sans-serif; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 0.3rem; }
@@ -166,14 +157,79 @@ window.MathJax = {
   .lead-sub { font-family: 'Inter', sans-serif; font-size: 0.78rem; color: var(--mid); margin-bottom: 0.6rem; }
   .lead-value { font-family: 'Inter', sans-serif; font-size: 0.8rem; color: var(--accent2); font-weight: 500; }
 
-  /* ENTRY POINTS */
-  .entry-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin: 1.5rem 0; }
-  .entry-card { border: 1px solid var(--rule); border-top: 3px solid var(--accent2); border-radius: 4px; padding: 1rem; }
-  .entry-num { font-family: 'Inter', sans-serif; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent2); margin-bottom: 0.3rem; }
-  .entry-title { font-family: 'Inter', sans-serif; font-size: 0.92rem; font-weight: 600; color: var(--accent); margin-bottom: 0.5rem; }
-  .entry-body { font-family: 'Inter', sans-serif; font-size: 0.78rem; color: var(--mid); line-height: 1.5; }
+  /* ENGAGEMENT MODEL */
+  .engage-funnel { margin: 1.5rem 0; }
+  .engage-step { display: flex; gap: 1.2rem; margin-bottom: 0.6rem; align-items: stretch; }
+  .engage-step-num {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--accent);
+    border-radius: 4px;
+    padding: 0.5rem 0.8rem;
+    display: flex;
+    align-items: center;
+    min-width: 3.5rem;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .engage-step-body {
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--accent2);
+    border-radius: 0 4px 4px 0;
+    padding: 0.7rem 1rem;
+    flex: 1;
+  }
+  .engage-step-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 0.25rem;
+  }
+  .engage-step-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    color: var(--mid);
+    line-height: 1.5;
+  }
+  .engage-connector {
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 2.55rem;
+    margin-bottom: 0.4rem;
+  }
+  .engage-connector-line {
+    width: 2px;
+    height: 1rem;
+    background: var(--accent2);
+    opacity: 0.4;
+  }
 
-  /* LINEAGE */
+  /* INDUSTRY GRID */
+  .industry-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+  .industry-card {
+    border: 1px solid var(--rule);
+    border-top: 3px solid var(--accent2);
+    border-radius: 4px;
+    padding: 1rem;
+  }
+  .industry-icon { font-size: 1.4rem; margin-bottom: 0.4rem; }
+  .industry-title { font-family: 'Inter', sans-serif; font-size: 0.88rem; font-weight: 600; color: var(--accent); margin-bottom: 0.4rem; }
+  .industry-body { font-family: 'Inter', sans-serif; font-size: 0.76rem; color: var(--mid); line-height: 1.5; }
+
+  /* REPO STRIP */
+  .repo-strip { background: var(--panel); border: 1px solid var(--rule); border-radius: 4px; padding: 1rem 1.2rem; margin: 1.5rem 0; font-family: 'Inter', sans-serif; font-size: 0.82rem; color: var(--mid); }
+  .repo-strip strong { color: var(--accent); }
+  .repo-strip a { color: var(--accent2); text-decoration: none; }
+  .repo-list { margin-top: 0.6rem; display: flex; flex-direction: column; gap: 0.3rem; }
+  .repo-row { display: flex; gap: 0.8rem; align-items: baseline; }
+  .repo-badge { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; background: var(--accent); color: #fff; border-radius: 3px; padding: 0.1rem 0.4rem; flex-shrink: 0; }
+  .repo-desc { font-size: 0.78rem; color: var(--mid); }
+
   .lineage { display: flex; align-items: center; justify-content: center; gap: 0; margin: 2rem 0; flex-wrap: wrap; }
   .lin-item { text-align: center; padding: 0.8rem 1.2rem; background: var(--panel); border: 1px solid var(--rule); }
   .lin-item:first-child { border-radius: 4px 0 0 4px; }
@@ -184,7 +240,6 @@ window.MathJax = {
   .lin-item:last-child .lin-claim { color: rgba(255,255,255,0.75); }
   .lin-arrow { font-size: 1.2rem; color: var(--muted); padding: 0 0.2rem; }
 
-  /* FOOTER */
   footer { margin-top: 4rem; padding-top: 1.5rem; border-top: 2px solid var(--accent); font-family: 'Inter', sans-serif; font-size: 0.75rem; color: var(--muted); text-align: center; line-height: 2; }
   footer a { color: var(--accent2); text-decoration: none; }
 
@@ -192,7 +247,8 @@ window.MathJax = {
     body { padding: 1.5rem; font-size: 0.95rem; }
     .cover { padding: 2rem 0; }
     .stat-grid { grid-template-columns: repeat(2,1fr); }
-    .compare, .lead-grid, .entry-grid { grid-template-columns: 1fr 1fr; }
+    .compare, .lead-grid { grid-template-columns: 1fr 1fr; }
+    .industry-grid { grid-template-columns: repeat(2,1fr); }
   }
 </style>
 </head>
@@ -311,7 +367,6 @@ window.MathJax = {
     </div>
   </div>
   <div class="pull">The lead time is a mathematical consequence of making the domain explicit. It cannot be produced by any approach that does not begin with a declared domain.</div>
-  <div class="pull" style="margin-top:0.5rem;">The cost is not the failure event. The cost is the interval between domain shift and detection.</div>
 </div>
 
 <!-- V -->
@@ -375,15 +430,6 @@ window.MathJax = {
       </tbody>
     </table>
   </div>
-  <p>Operator type signatures over \( D \):</p>
-  <div class="math-block" style="text-align:left; line-height:2.2;">
-    <div class="math-label" style="margin-bottom:0.8rem;">Type Signatures</div>
-    \( A : D \rightarrow \mathbb{R}^n \) &nbsp;&nbsp; gradient extraction; output not yet bounded<br>
-    \( B : \mathbb{R}^n \rightarrow \mathbb{R}^n \) &nbsp;&nbsp; local accumulation; preserves dimensionality<br>
-    \( R : \mathbb{R}^n \times \mathbb{R} \rightarrow \mathbb{R}^n \) &nbsp;&nbsp; antisymmetric circulation; \( \rho \in (0,\, 0.5] \)<br>
-    \( C : \mathbb{R}^n \rightarrow D \) &nbsp;&nbsp; bounded coherence; output \( \in D \) by construction<br>
-    \( E : D \times \mathbb{R} \rightarrow D \) &nbsp;&nbsp; full evolution; \( D \)-closed by \( C \)
-  </div>
 </div>
 
 <!-- VI -->
@@ -410,7 +456,6 @@ window.MathJax = {
       </ul></div>
     </div>
   </div>
-  <p>Formally, constraint strength scales as:</p>
   <div class="math-block">
     <div class="math-label">Derived Result — Acceleration Inversion</div>
     \[ \text{constraint\_strength}(B) \;:=\; \text{coherence}(B) \times \text{volume}(B) \]
@@ -421,25 +466,98 @@ window.MathJax = {
 <!-- VII -->
 <div class="section">
   <h2><span class="num">VII.</span> The Business Model</h2>
-  <h3>Three entry points. One mathematical foundation.</h3>
-  <div class="entry-grid">
-    <div class="entry-card">
-      <div class="entry-num">Entry Point 1</div>
-      <div class="entry-title">Applied Analysis</div>
-      <div class="entry-body">Direct application of the framework to client systems. Immediate detection capability without internal changes. Rapid identification of failure modes and domain boundaries.</div>
-    </div>
-    <div class="entry-card">
-      <div class="entry-num">Entry Point 2</div>
-      <div class="entry-title">Systems Integration</div>
-      <div class="entry-body">Embedding detection into production infrastructure. Integration with monitoring, ML pipelines, and operations. Persistent early warning capability built into client systems.</div>
-    </div>
-    <div class="entry-card">
-      <div class="entry-num">Entry Point 3</div>
-      <div class="entry-title">Capability Transfer</div>
-      <div class="entry-body">Training internal teams in domain declaration and operator application. Durable, compounding competitive advantage. The deepest engagement produces the longest-lasting position.</div>
+  <h3>Open tools as proof. Consulting engagement as value delivery.</h3>
+
+  <p>The Metatron Dynamics business model is a consulting relationship, not a software license. The open-source tooling portfolio demonstrates the framework's rigor and reproducibility. It is the proof of capability that opens the door. The economic value is delivered through direct engagement with client systems.</p>
+
+  <p><strong>The tools are not the product. They are the entry point.</strong> They expose domain violations in a form that is directly observable within the client's own system. The product is the application of domain declaration and operator enforcement to eliminate those violations before they propagate into cost.</p>
+
+  <div class="pull">The tools show that domain enforcement is real. The engagement is where that enforcement is applied to the systems where failure is actually expensive.</div>
+
+  <p>The engagement model follows a deliberate sequence: the open tools establish credibility and create a concrete, verifiable entry point; the consulting relationship translates that capability into client-specific domain declarations, operator applications, and structural early warning systems.</p>
+
+  <div class="repo-strip">
+    <strong>Public tooling portfolio</strong> — openly verifiable at <a href="https://github.com/Relational-Relativity-Corporation">github.com/Relational-Relativity-Corporation</a>
+    <div class="repo-list">
+      <div class="repo-row"><span class="repo-badge">A</span><span class="repo-desc"><strong>md-domain-verifier</strong> — static admissibility check: declared domain vs. implemented domain</span></div>
+      <div class="repo-row"><span class="repo-badge">E</span><span class="repo-desc"><strong>md-runtime-guard</strong> — runtime enforcement: boundary violations detected at execution</span></div>
+      <div class="repo-row"><span class="repo-badge">A→E</span><span class="repo-desc"><strong>md-pipeline</strong> — orchestrated verification pipeline, CI-ready</span></div>
     </div>
   </div>
-  <p>All three entry points rest on the same mathematics. A framework built on finite-dimensional bounded operators does not have preferred industries. Domain universality is a mathematical property, not a marketing claim.</p>
+
+  <h3 style="margin-top:2rem;">The engagement sequence</h3>
+
+  <div class="engage-funnel">
+    <div class="engage-step">
+      <div class="engage-step-num">Step 1</div>
+      <div class="engage-step-body">
+        <div class="engage-step-title">Domain Assessment</div>
+        <div class="engage-step-desc">Identify the client system's implicit operating domain. Map the assumptions currently embedded in code, data pipelines, models, or procurement logic. Establish what D is — often for the first time.</div>
+      </div>
+    </div>
+    <div class="engage-connector"><div class="engage-connector-line"></div></div>
+    <div class="engage-step">
+      <div class="engage-step-num">Step 2</div>
+      <div class="engage-step-body">
+        <div class="engage-step-title">Operator Application</div>
+        <div class="engage-step-desc">Apply the ABRCE kernel to the client's specific system geometry. Calibrate ρ to the relational structure of the client's domain. Produce the first structural early warning signal against their actual data.</div>
+      </div>
+    </div>
+    <div class="engage-connector"><div class="engage-connector-line"></div></div>
+    <div class="engage-step">
+      <div class="engage-step-num">Step 3</div>
+      <div class="engage-step-body">
+        <div class="engage-step-title">Integration</div>
+        <div class="engage-step-desc">Embed the detection layer into the client's production infrastructure — monitoring pipelines, CI systems, operational dashboards. The enforcement boundary becomes part of the system, not an external check.</div>
+      </div>
+    </div>
+    <div class="engage-connector"><div class="engage-connector-line"></div></div>
+    <div class="engage-step">
+      <div class="engage-step-num">Step 4</div>
+      <div class="engage-step-body">
+        <div class="engage-step-title">Capability Transfer</div>
+        <div class="engage-step-desc">Train internal teams in domain declaration and operator application. The client develops durable internal capacity. This is the highest-value engagement — the perspective shift becomes an organizational asset that compounds indefinitely.</div>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:2rem;">Where this applies</h3>
+  <p>The ABRCE framework applies to any system governed by software or operating under declared or undeclared assumptions. The following represent primary engagement surfaces — not an exhaustive list.</p>
+
+  <div class="industry-grid">
+    <div class="industry-card">
+      <div class="industry-icon">⚙️</div>
+      <div class="industry-title">Software Systems</div>
+      <div class="industry-body">Domain boundary enforcement in production codebases. Static verification and runtime enforcement already demonstrated in the open tooling portfolio. Natural entry point for software organizations.</div>
+    </div>
+    <div class="industry-card">
+      <div class="industry-icon">🏭</div>
+      <div class="industry-title">Manufacturing</div>
+      <div class="industry-body">Process parameters, sensor networks, and quality control systems all operate within implicit domains. Domain shift during production runs is the primary source of defect cascades.</div>
+    </div>
+    <div class="industry-card">
+      <div class="industry-icon">🚢</div>
+      <div class="industry-title">Shipping & Logistics</div>
+      <div class="industry-body">Multi-node supply chains accumulate domain violations across handoffs. The 88-step lead time demonstrated in supply chain simulation is directly applicable to logistics network monitoring.</div>
+    </div>
+    <div class="industry-card">
+      <div class="industry-icon">📦</div>
+      <div class="industry-title">Procurement</div>
+      <div class="industry-body">Procurement decisions rest on supplier and market assumptions that shift without structural warning. Domain declaration makes those assumptions explicit and detectable before commitment.</div>
+    </div>
+    <div class="industry-card">
+      <div class="industry-icon">🤖</div>
+      <div class="industry-title">AI & ML Systems</div>
+      <div class="industry-body">91% of ML systems experience performance degradation. Every model operates on a training distribution that constitutes an implicit domain. ABRCE detects departure from that domain before output quality degrades.</div>
+    </div>
+    <div class="industry-card">
+      <div class="industry-icon">⚡</div>
+      <div class="industry-title">Energy & Infrastructure</div>
+      <div class="industry-body">Safety-critical systems where cost of failure is measured in lives and regulatory consequence. Domain enforcement is not a preference — it is a structural requirement. Bruce Stephenson's energy physics background applies directly.</div>
+    </div>
+  </div>
+
+  <div class="pull">Domain universality is a mathematical property, not a marketing claim. Any finite-dimensional system processing bounded inputs is in scope.</div>
 </div>
 
 <!-- VIII -->
@@ -472,16 +590,19 @@ window.MathJax = {
   <h2><span class="num">IX.</span> The Invitation</h2>
   <h3>Making the assumptions visible</h3>
   <p>Every information processing system in operation today rests on assumptions that have never been written down. When those assumptions hold, the system works. When they fail, the system continues — silently, expensively, until the cascade arrives.</p>
-  <p>Metatron Dynamics makes those assumptions explicit, measurable, and detectable in advance.</p>
+  <p>Metatron Dynamics makes those assumptions explicit, measurable, and detectable in advance. The open tooling is the demonstration. The consulting engagement is how that capability reaches the systems where failure is actually costly.</p>
+  <p>The engagement begins with a single question: <em>what is your system's domain, and when did it last leave it?</em> Most organizations cannot answer either half. That is the opening.</p>
   <div class="lineage">
     <div class="lin-item"><div class="lin-name">Shannon</div><div class="lin-claim">Formalized the channel</div></div>
     <div class="lin-arrow">→</div>
     <div class="lin-item"><div class="lin-name">Turing</div><div class="lin-claim">Formalized computation</div></div>
     <div class="lin-arrow">→</div>
+    <div class="lin-item"><div class="lin-name">Wiener</div><div class="lin-claim">Formalized feedback</div></div>
+    <div class="lin-arrow">→</div>
     <div class="lin-item"><div class="lin-name">Metatron</div><div class="lin-claim">Formalizes the domain</div></div>
   </div>
   <p>The economic value of that formalization is not speculative. It is already present, already compounding, in every organization processing information under assumptions they cannot currently see.</p>
-  <div class="pull">The stability conditions have been derived. The lead times have been demonstrated. The white space is confirmed. We are making it visible.</div>
+  <div class="pull">The stability conditions have been derived. The lead times have been demonstrated. The white space is confirmed. The tools are live. We are making it visible — one system at a time.</div>
   <p style="font-family:'Inter',sans-serif; font-size:0.95rem; font-weight:500; color:var(--accent); margin-top:1.5rem;">Every system already has a domain. The only question is whether you can see it before it fails.</p>
 </div>
 
