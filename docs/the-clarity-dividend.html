@@ -299,7 +299,7 @@ window.MathJax = {
     </div>
   </div>
   <p>These are not edge cases. They are structural consequences of how modern systems are built.</p>
-  <p>This creates a structural blind spot: systems continue operating after they are no longer valid, and no existing tool detects when that transition begins.</p>
+  <p>This creates a structural blind spot: systems continue operating after they are no longer valid, and no current tool detects when that transition begins.</p>
 </div>
 
 <!-- II -->
@@ -334,7 +334,7 @@ window.MathJax = {
 <div class="section">
   <h2><span class="num">III.</span> The Breakthrough</h2>
   <h3>Metatron Dynamics detects when systems leave their valid domain</h3>
-  <p>This introduces a capability that does not exist in any current monitoring or observability system: a system can detect <em>approach to its domain boundary</em> before output degradation occurs.</p>
+  <p>This introduces a capability not present in current monitoring or observability systems: a system can detect <em>approach to its domain boundary</em> before output degradation occurs.</p>
   <p>In practical terms, this means detecting when a system's outputs are about to become unreliable — before cost, failure, or drift becomes visible.</p>
   <div class="lineage">
     <div class="lin-item"><div class="lin-name">Shannon</div><div class="lin-claim">Formalized the channel</div></div>
@@ -436,6 +436,7 @@ window.MathJax = {
 <div class="section">
   <h2><span class="num">VI.</span> The Acceleration Inversion</h2>
   <h3>Performance improves as volume increases — the inverse of every conventional system</h3>
+  <p>This is the inverse of conventional systems, where increased scale typically degrades signal quality and detection reliability.</p>
   <div class="compare">
     <div class="compare-col conventional">
       <div class="compare-head">Conventional monitoring</div>
@@ -578,7 +579,7 @@ window.MathJax = {
         </tr>
         <tr>
           <td>Absence of Competition</td>
-          <td>Current systems monitor outputs after degradation. No existing system declares domains formally or detects boundary approach structurally. This is a structural white space, not a product gap.</td>
+          <td>Current systems monitor outputs after degradation. No current system declares domains formally or detects boundary approach structurally. This is a structural white space, not a product gap.</td>
         </tr>
       </tbody>
     </table>
@@ -587,7 +588,25 @@ window.MathJax = {
 
 <!-- IX -->
 <div class="section">
-  <h2><span class="num">IX.</span> The Invitation</h2>
+  <h2><span class="num">IX.</span> Independent Validation</h2>
+  <h3>Reproducibility as the evaluation standard</h3>
+
+  <p>Evaluation does not require prior adoption, licensing, or integration. The validation path is direct: implement the operator set independently, under shared constraints, against a defined domain problem, and observe whether structural behavior converges.</p>
+
+  <p>Independent implementation under shared constraints should converge to structurally equivalent behavior under identical constraints and boundary conditions. This is a reproducibility claim, not a theoretical assertion. It is testable.</p>
+
+  <p>The evaluation sequence is straightforward. A technically capable team reviews the operator definitions — A, B, R, C, E — and the domain declaration. Metatron engineers are available to support a joint minimal demonstration. Both teams implement independently under the same declared constraints, then compare structural output. Convergence validates the constraint set. Divergence identifies specific misalignment — a refinable signal, not a failure condition.</p>
+
+  <p>Existing public repositories demonstrate that conforming implementations are concise — typically tens to low hundreds of lines of working code per operator set. Code volume is not the constraint. Understanding the constraint geometry is. In practice, a technically capable team can implement and evaluate a minimal demonstration within a few hours of focused engagement. The effort is front-loaded in constraint discipline, not distributed across engineering complexity.</p>
+
+  <p>Where convergence is observed, the framework can be treated as operationally validated within the declared domain.</p>
+
+  <p>The system is evaluated by building it, not by reading about it.</p>
+</div>
+
+<!-- X -->
+<div class="section">
+  <h2><span class="num">X.</span> The Invitation</h2>
   <h3>Making the assumptions visible</h3>
   <p>Every information processing system in operation today rests on assumptions that have never been written down. When those assumptions hold, the system works. When they fail, the system continues — silently, expensively, until the cascade arrives.</p>
   <p>Metatron Dynamics makes those assumptions explicit, measurable, and detectable in advance. The open tooling is the demonstration. The consulting engagement is how that capability reaches the systems where failure is actually costly.</p>

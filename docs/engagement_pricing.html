@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Engagement & Cost Structure — Metatron Dynamics</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink:       #1a1a24;
+    --mid:       #3d3d52;
+    --muted:     #6b6b84;
+    --rule:      #d4d4e0;
+    --accent:    #1e3a5f;
+    --accent2:   #2d6a8f;
+    --bg:        #fafaf8;
+    --panel:     #f2f2ef;
+    --highlight: #e8f0f7;
+    --green:     #1a5f3a;
+    --green-bg:  #e8f5ee;
+  }
+
+  html { font-size: 16px; background: var(--bg); color: var(--ink); }
+
+  body {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 1.05rem;
+    line-height: 1.75;
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 3rem 2.5rem 5rem;
+  }
+
+  .cover {
+    text-align: center;
+    padding: 4rem 0 3.5rem;
+    border-bottom: 2px solid var(--accent);
+    margin-bottom: 3rem;
+  }
+  .cover-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 1.2rem;
+  }
+  .cover h1 {
+    font-size: 2.4rem;
+    font-weight: 500;
+    color: var(--accent);
+    line-height: 1.2;
+    margin-bottom: 0.6rem;
+  }
+  .cover .subtitle {
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--mid);
+    margin-bottom: 2rem;
+  }
+  .cover-rule { width: 60px; height: 2px; background: var(--accent2); margin: 0 auto 2rem; }
+  .cover-meta { font-family: 'Inter', sans-serif; font-size: 0.82rem; color: var(--muted); line-height: 2; }
+  .cover-meta strong { color: var(--mid); }
+  .cover-meta a { color: var(--accent2); text-decoration: none; }
+
+  .section { margin-bottom: 3rem; }
+
+  h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 0.3rem;
+  }
+  h2 .num { display: inline-block; margin-right: 0.5em; color: var(--muted); }
+
+  h3 {
+    font-size: 1.45rem;
+    font-weight: 500;
+    color: var(--accent);
+    line-height: 1.3;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 0.4rem;
+  }
+
+  p { margin-bottom: 1rem; }
+
+  .pull {
+    border-left: 3px solid var(--accent2);
+    padding: 0.6rem 1.2rem;
+    margin: 1.5rem 0;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--mid);
+    background: var(--highlight);
+    border-radius: 0 4px 4px 0;
+  }
+
+  .pull.green {
+    border-left-color: var(--green);
+    background: var(--green-bg);
+    color: var(--green);
+  }
+
+  /* PHASE CARDS */
+  .phase { margin-bottom: 1rem; }
+  .phase-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--accent);
+    color: #fff;
+    padding: 0.7rem 1.1rem;
+    border-radius: 4px 4px 0 0;
+  }
+  .phase-num {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    opacity: 0.75;
+    flex-shrink: 0;
+  }
+  .phase-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+  .phase-range {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 600;
+    margin-left: auto;
+    opacity: 0.9;
+    flex-shrink: 0;
+  }
+  .phase-body {
+    border: 1px solid var(--rule);
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    padding: 1rem 1.2rem;
+  }
+  .phase-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.82rem;
+    color: var(--mid);
+    margin-bottom: 0.8rem;
+    line-height: 1.6;
+  }
+  .phase-items {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.4rem 1.5rem;
+  }
+  .phase-item {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.78rem;
+    color: var(--mid);
+    padding: 0.2rem 0;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    gap: 0.4rem;
+    align-items: baseline;
+  }
+  .phase-item::before { content: "—"; color: var(--accent2); flex-shrink: 0; }
+
+  /* PERFORMANCE TABLE */
+  .tbl-wrap { overflow-x: auto; margin: 1.5rem 0; }
+  table { width: 100%; border-collapse: collapse; font-family: 'Inter', sans-serif; font-size: 0.85rem; }
+  thead tr { background: var(--accent); color: #fff; }
+  thead th { padding: 0.6rem 0.9rem; text-align: left; font-weight: 500; letter-spacing: 0.04em; }
+  tbody tr { border-bottom: 1px solid var(--rule); }
+  tbody tr:nth-child(even) { background: var(--panel); }
+  tbody td { padding: 0.55rem 0.9rem; vertical-align: top; line-height: 1.5; }
+  tbody td:first-child { font-weight: 500; color: var(--accent); }
+
+  /* SUMMARY BAR */
+  .summary-bar {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .summary-cell {
+    background: var(--highlight);
+    border: 1px solid var(--rule);
+    border-top: 3px solid var(--accent2);
+    border-radius: 4px;
+    padding: 1rem 1.1rem;
+    text-align: center;
+  }
+  .summary-cell.green {
+    border-top-color: var(--green);
+    background: var(--green-bg);
+  }
+  .summary-num {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1.1;
+    margin-bottom: 0.3rem;
+  }
+  .summary-cell.green .summary-num { color: var(--green); }
+  .summary-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.72rem;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  /* SCENARIO */
+  .scenario {
+    background: var(--panel);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 4px 4px 0;
+    padding: 1.2rem 1.4rem;
+    margin: 1.5rem 0;
+  }
+  .scenario-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 0.8rem;
+  }
+  .scenario-row {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.82rem;
+    padding: 0.3rem 0;
+    border-bottom: 1px solid var(--rule);
+    color: var(--mid);
+  }
+  .scenario-row:last-child { border-bottom: none; font-weight: 600; color: var(--accent); }
+  .scenario-row span:last-child { text-align: right; }
+
+  /* COMPARISON */
+  .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
+  .compare-col { border: 1px solid var(--rule); border-radius: 4px; overflow: hidden; }
+  .compare-head { font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.5rem 0.9rem; }
+  .compare-col.conventional .compare-head { background: #e8e8ee; color: var(--mid); }
+  .compare-col.abrce .compare-head { background: var(--accent); color: #fff; }
+  .compare-body { padding: 0.8rem 0.9rem; }
+  .compare-body ul { list-style: none; padding: 0; }
+  .compare-body li { font-family: 'Inter', sans-serif; font-size: 0.82rem; padding: 0.3rem 0; border-bottom: 1px solid var(--rule); color: var(--mid); line-height: 1.4; }
+  .compare-body li:last-child { border-bottom: none; }
+  .compare-col.abrce .compare-body li { color: var(--accent); }
+
+  footer { margin-top: 4rem; padding-top: 1.5rem; border-top: 2px solid var(--accent); font-family: 'Inter', sans-serif; font-size: 0.75rem; color: var(--muted); text-align: center; line-height: 2; }
+  footer a { color: var(--accent2); text-decoration: none; }
+
+  @media print {
+    body { padding: 1.5rem; font-size: 0.95rem; }
+    .summary-bar { grid-template-columns: repeat(3,1fr); }
+    .phase-items { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-label">Engagement Document · 2026</div>
+  <h1>Engagement &amp; Cost Structure</h1>
+  <div class="subtitle">Outcome-Aligned System Stability &amp; Domain Enforcement</div>
+  <div class="cover-rule"></div>
+  <div class="cover-meta">
+    <strong>Metatron Dynamics</strong><br>
+    Robin Macomber, Founder &nbsp;·&nbsp; Bruce Stephenson, CTO — Energy Physics<br><br>
+    <a href="https://relationalrelativity.dev">relationalrelativity.dev</a> &nbsp;·&nbsp;
+    <a href="https://github.com/Relational-Relativity-Corporation">github.com/Relational-Relativity-Corporation</a>
+  </div>
+</div>
+
+<!-- I -->
+<div class="section">
+  <h2><span class="num">I.</span> Engagement Philosophy</h2>
+  <h3>We de-risk adoption by tying our upside to your results</h3>
+  <p>Metatron Dynamics does not ask clients to believe in the framework before committing budget. The engagement is structured so that the majority of our compensation is tied to measurable system improvements — verified cost savings, avoided losses, and documented stability gains.</p>
+  <p>The tools we deploy are not the product. They are the entry point. They expose domain violations inside your system in a form that is directly observable. The tooling is fully functional; however, correct deployment, configuration, and interpretation require synchronous engagement with Metatron Dynamics. The tools are not offered as standalone products at this stage. The product is the application of domain declaration and operator enforcement to eliminate those violations before they propagate into cost.</p>
+  <p>This requirement reflects a broader condition across modern systems: complexity has exceeded the capacity of human cognition and oversight to reliably maintain bounded operation. Without explicit structural scaffolding, systems drift into undeclared or unbounded behavior. Correct domain definition, calibration, and enforcement therefore cannot be assumed — they must be applied explicitly and in context.</p>
+  <div class="pull">We apply the framework to your system, measure the result, and participate in the value created. If the value is not there, the majority of our compensation is not there.</div>
+
+  <div class="compare">
+    <div class="compare-col conventional">
+      <div class="compare-head">Traditional consulting</div>
+      <div class="compare-body"><ul>
+        <li>Fixed fee regardless of outcome</li>
+        <li>Deliverable is a report or recommendation</li>
+        <li>Implementation risk stays with client</li>
+        <li>No structural alignment with results</li>
+      </ul></div>
+    </div>
+    <div class="compare-col abrce">
+      <div class="compare-head">Metatron Dynamics model</div>
+      <div class="compare-body"><ul>
+        <li>Base fee covers access and assessment only</li>
+        <li>Deliverable is measurable system improvement</li>
+        <li>Performance participation aligns our upside with yours</li>
+        <li>We remain engaged until violations are resolved</li>
+      </ul></div>
+    </div>
+  </div>
+</div>
+
+<!-- II -->
+<div class="section">
+  <h2><span class="num">II.</span> Engagement Phases &amp; Cost Structure</h2>
+  <h3>Four phases. One continuous engagement.</h3>
+  <p>The engagement is structured as a sequential deployment — each phase builds on the previous. Pricing ranges reflect system complexity and organizational scale. All figures are indicative; final structure is agreed prior to engagement.</p>
+
+  <!-- Phase 1 -->
+  <div class="phase">
+    <div class="phase-header">
+      <div class="phase-num">Phase 1</div>
+      <div class="phase-title">Domain Assessment &amp; Tool Deployment</div>
+      <div class="phase-range">$15,000 – $35,000</div>
+    </div>
+    <div class="phase-body">
+      <div class="phase-desc">Low-friction entry point. We deploy the open tooling against a defined subsystem and produce the first structural domain map. Client sees hidden violations in their own system before committing further.</div>
+      <div class="phase-items">
+        <div class="phase-item">Deploy md-domain-verifier against target subsystem</div>
+        <div class="phase-item">Deploy md-runtime-guard with domain bounds configured through synchronous engagement with Metatron Dynamics</div>
+        <div class="phase-item">Run md-pipeline A→E verification pass</div>
+        <div class="phase-item">Map implicit domain assumptions in existing code or models</div>
+        <div class="phase-item">Identify undeclared relations and boundary violations</div>
+        <div class="phase-item">Deliver written Domain Assessment Report</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 2 -->
+  <div class="phase">
+    <div class="phase-header">
+      <div class="phase-num">Phase 2</div>
+      <div class="phase-title">Baseline Measurement &amp; Operator Application</div>
+      <div class="phase-range">$25,000 – $60,000</div>
+    </div>
+    <div class="phase-body">
+      <div class="phase-desc">The ABRCE kernel is calibrated to the client's specific system geometry. Agreed performance metrics are baselined. First structural early warning signal is produced against live or production-representative data.</div>
+      <div class="phase-items">
+        <div class="phase-item">Capture current system behavior across agreed metrics</div>
+        <div class="phase-item">Calibrate ρ to client relational structure</div>
+        <div class="phase-item">Apply full A→B→R→C→E operator sequence to client domain</div>
+        <div class="phase-item">Define measurable performance targets (downtime, error rate, throughput)</div>
+        <div class="phase-item">Establish verified baseline for performance participation</div>
+        <div class="phase-item">Deliver Baseline Measurement Report with agreed KPIs</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 3 -->
+  <div class="phase">
+    <div class="phase-header">
+      <div class="phase-num">Phase 3</div>
+      <div class="phase-title">Integration &amp; Synchronous Enforcement</div>
+      <div class="phase-range">$40,000 – $120,000</div>
+    </div>
+    <div class="phase-body">
+      <div class="phase-desc">The enforcement layer operates through direct, synchronous engagement with the system and its operators. This is not optional — correct domain enforcement depends on real-time interaction with system conditions and intent.</div>
+      <div class="phase-items">
+        <div class="phase-item">Embed md-pipeline into CI/CD or operational pipeline</div>
+        <div class="phase-item">Configure runtime boundary enforcement for production</div>
+        <div class="phase-item">Synchronous engagement with system operators during integration</div>
+        <div class="phase-item">Interpret and resolve violation signals in operational context</div>
+        <div class="phase-item">Connect to monitoring dashboards and alerting infrastructure</div>
+        <div class="phase-item">Deliver Integration Verification Report</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 4 -->
+  <div class="phase">
+    <div class="phase-header">
+      <div class="phase-num">Phase 4</div>
+      <div class="phase-title">Capability Transfer</div>
+      <div class="phase-range">$20,000 – $50,000</div>
+    </div>
+    <div class="phase-body">
+      <div class="phase-desc">Internal teams are trained in domain declaration and operator application. The client develops durable internal capacity — the perspective shift becomes an organizational asset that compounds independently of continued Metatron Dynamics involvement.</div>
+      <div class="phase-items">
+        <div class="phase-item">Domain declaration training for engineering leads</div>
+        <div class="phase-item">Operator calibration protocol documentation</div>
+        <div class="phase-item">Internal runbook for ongoing enforcement maintenance</div>
+        <div class="phase-item">Handoff of all tooling configuration and parameterization</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="summary-bar">
+    <div class="summary-cell">
+      <div class="summary-num">$100K</div>
+      <div class="summary-label">Minimum full engagement<br>(small system, lower complexity)</div>
+    </div>
+    <div class="summary-cell">
+      <div class="summary-num">$265K</div>
+      <div class="summary-label">Maximum base fee range<br>(large system, full integration)</div>
+    </div>
+    <div class="summary-cell green">
+      <div class="summary-num">+Performance</div>
+      <div class="summary-label">Majority of Metatron upside tied to verified results</div>
+    </div>
+  </div>
+</div>
+
+<!-- III -->
+<div class="section">
+  <h2><span class="num">III.</span> Performance Participation</h2>
+  <h3>Our upside is tied to your measurable improvement</h3>
+  <p>The base engagement fee covers access, assessment, integration, and transfer. The majority of Metatron Dynamics compensation is structured as performance participation — tied to verified, agreed metrics measured against the Phase 2 baseline.</p>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr><th>Metric Category</th><th>Example Measure</th><th>Participation Structure</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Downtime Reduction</td>
+          <td>Unplanned outage hours eliminated vs. baseline</td>
+          <td>15–25% of verified avoided cost, measured over 12 months</td>
+        </tr>
+        <tr>
+          <td>Error Rate Reduction</td>
+          <td>Domain violation events per 10,000 executions</td>
+          <td>Fixed per-point improvement fee against agreed baseline rate</td>
+        </tr>
+        <tr>
+          <td>Compute Efficiency</td>
+          <td>Redundant execution cycles eliminated</td>
+          <td>10–20% of documented infrastructure cost reduction</td>
+        </tr>
+        <tr>
+          <td>Throughput Improvement</td>
+          <td>Units processed per period vs. baseline</td>
+          <td>Revenue participation on incremental throughput above threshold</td>
+        </tr>
+        <tr>
+          <td>Avoided Loss</td>
+          <td>Cascade failures prevented, supply chain events avoided</td>
+          <td>15–30% of verified avoided loss, documented against prior incident rate</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>Participation rates and measurement windows are agreed in writing prior to Phase 2. All measurement is conducted against the independently established Phase 2 baseline. No participation is claimed for improvements that cannot be directly attributed to the engagement.</p>
+
+  <div class="pull green">The performance participation structure exists because we are confident the improvements are real. If they are not, the majority of our compensation is not triggered.</div>
+</div>
+
+<!-- IV -->
+<div class="section">
+  <h2><span class="num">IV.</span> Illustrative Scenarios</h2>
+  <h3>What the economics look like in practice</h3>
+
+  <div class="scenario">
+    <div class="scenario-title">Scenario A — Mid-Size Software Organization</div>
+    <div class="scenario-row"><span>Phase 1 — Domain Assessment</span><span>$22,000</span></div>
+    <div class="scenario-row"><span>Phase 2 — Baseline &amp; Operator Application</span><span>$38,000</span></div>
+    <div class="scenario-row"><span>Phase 3 — CI/CD Integration</span><span>$55,000</span></div>
+    <div class="scenario-row"><span>Phase 4 — Capability Transfer</span><span>$28,000</span></div>
+    <div class="scenario-row"><span>Base Fee Total</span><span>$143,000</span></div>
+    <div class="scenario-row"><span>Performance Participation (12-month, 20% of $800K avoided downtime cost)</span><span>$160,000</span></div>
+    <div class="scenario-row"><span>Total Engagement Value (Metatron)</span><span>$303,000</span></div>
+  </div>
+
+  <div class="scenario">
+    <div class="scenario-title">Scenario B — Manufacturing / Industrial System</div>
+    <div class="scenario-row"><span>Phase 1 — Domain Assessment</span><span>$35,000</span></div>
+    <div class="scenario-row"><span>Phase 2 — Baseline &amp; Operator Application</span><span>$60,000</span></div>
+    <div class="scenario-row"><span>Phase 3 — Production Integration</span><span>$120,000</span></div>
+    <div class="scenario-row"><span>Phase 4 — Capability Transfer</span><span>$45,000</span></div>
+    <div class="scenario-row"><span>Base Fee Total</span><span>$260,000</span></div>
+    <div class="scenario-row"><span>Performance Participation (12-month, 25% of $3.2M avoided cascade losses)</span><span>$800,000</span></div>
+    <div class="scenario-row"><span>Total Engagement Value (Metatron)</span><span>$1,060,000</span></div>
+  </div>
+
+  <p style="font-family:'Inter',sans-serif; font-size:0.8rem; color:var(--muted); margin-top:0.5rem;">Scenarios are illustrative. Actual figures depend on system scope, complexity, and agreed performance metrics. Performance participation is subject to independent verification.</p>
+</div>
+
+<!-- V -->
+<div class="section">
+  <h2><span class="num">V.</span> Why This Is Defensible</h2>
+  <h3>The value is in application, not in the operators themselves</h3>
+  <p>The ABRCE framework is formally defined, openly expressed, and publicly verifiable. The operators are not proprietary. The defensibility of the business model does not rest on secrecy.</p>
+  <p>The economic value is in correct application within real systems. The tooling provides visibility into structural violations; the value is realized through correct interpretation and resolution within the live system context.</p>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Capability</th><th>Why It Is Difficult to Replicate</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>System-specific domain mapping</td>
+          <td>Every system has a different implicit domain. Mapping it requires direct engagement with the system, its operators, and its failure history — not a framework alone.</td>
+        </tr>
+        <tr>
+          <td>Relational parameterization</td>
+          <td>Calibrating ρ to a specific system geometry requires understanding of the system's relational structure. This is nontrivial and context-dependent.</td>
+        </tr>
+        <tr>
+          <td>Violation interpretation</td>
+          <td>A structural violation signal is not self-interpreting. Understanding what it means in the context of a live system requires domain expertise and synchronous engagement.</td>
+        </tr>
+        <tr>
+          <td>Production integration</td>
+          <td>Embedding enforcement into operational infrastructure requires navigating the client's specific tooling, constraints, and organizational context.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pull">The open tools create trust. The application layer creates value. Neither exists without the other.</div>
+</div>
+
+<footer>
+  Metatron Dynamics &nbsp;·&nbsp; Robin Macomber, Founder &nbsp;·&nbsp; Bruce Stephenson, CTO<br>
+  <a href="https://relationalrelativity.dev">relationalrelativity.dev</a> &nbsp;·&nbsp;
+  <a href="https://github.com/Relational-Relativity-Corporation">github.com/Relational-Relativity-Corporation</a><br><br>
+  Figures in this document are indicative. All engagement terms, performance metrics, and participation rates are agreed in writing prior to Phase 2 commencement.
+</footer>
+
+</body>
+</html>
