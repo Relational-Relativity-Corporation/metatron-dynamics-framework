@@ -5,632 +5,589 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Clarity Dividend — Metatron Dynamics</title>
 <script>
-window.MathJax = {
-  tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] },
-  options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
-};
+  window.MathJax = {
+    tex: {
+      inlineMath: [['\\(', '\\)']],
+      displayMath: [['\\[', '\\]']],
+      processEscapes: true
+    },
+    options: {
+      skipHtmlTags: ['script','noscript','style','textarea','pre']
+    }
+  };
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-chtml.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js" async></script>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap');
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
-    --ink:       #1a1a24;
-    --mid:       #3d3d52;
-    --muted:     #6b6b84;
-    --rule:      #d4d4e0;
-    --accent:    #1e3a5f;
-    --accent2:   #2d6a8f;
-    --bg:        #fafaf8;
-    --panel:     #f2f2ef;
-    --highlight: #e8f0f7;
+    --ink: #1a1a1a;
+    --rule: #1a1a1a;
+    --frame-bg: #f7f7f5;
+    --frame-border: #2a2a2a;
+    --page: #ffffff;
+    --muted: #555;
+    --light-rule: #ddd;
+    --gold: #8a7340;
   }
 
-  html { font-size: 16px; background: var(--bg); color: var(--ink); }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    font-family: 'EB Garamond', Georgia, serif;
-    font-size: 1.05rem;
-    line-height: 1.75;
-    max-width: 820px;
+    font-family: "Georgia", "Times New Roman", serif;
+    font-size: 16px;
+    line-height: 1.82;
+    color: var(--ink);
+    background: var(--page);
+    max-width: 880px;
     margin: 0 auto;
-    padding: 3rem 2.5rem 5rem;
+    padding: 60px 56px 100px;
   }
 
-  .cover {
-    text-align: center;
-    padding: 4rem 0 3.5rem;
-    border-bottom: 2px solid var(--accent);
-    margin-bottom: 3rem;
-  }
-  .cover-label {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--accent2);
-    margin-bottom: 1.2rem;
-  }
-  .cover h1 {
-    font-size: 2.8rem;
-    font-weight: 500;
-    color: var(--accent);
-    line-height: 1.2;
-    margin-bottom: 0.6rem;
-  }
-  .cover .subtitle {
-    font-size: 1.15rem;
-    font-style: italic;
-    color: var(--mid);
-    margin-bottom: 2rem;
-  }
-  .cover-rule { width: 60px; height: 2px; background: var(--accent2); margin: 0 auto 2rem; }
-  .cover-meta { font-family: 'Inter', sans-serif; font-size: 0.82rem; color: var(--muted); line-height: 2; }
-  .cover-meta strong { color: var(--mid); }
-  .cover-meta a { color: var(--accent2); text-decoration: none; }
-
-  .section { margin-bottom: 3rem; }
-
-  h2 {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--accent2);
-    margin-bottom: 0.3rem;
-  }
-  h2 .num { display: inline-block; margin-right: 0.5em; color: var(--muted); }
-
-  h3 {
-    font-size: 1.55rem;
-    font-weight: 500;
-    color: var(--accent);
-    line-height: 1.3;
-    margin-bottom: 1rem;
+  /* Title block */
+  .doc-title {
+    border-top: 4px solid var(--rule);
     border-bottom: 1px solid var(--rule);
-    padding-bottom: 0.4rem;
+    padding: 30px 0 24px;
+    margin-bottom: 14px;
   }
-
-  p { margin-bottom: 1rem; }
-
-  .pull {
-    border-left: 3px solid var(--accent2);
-    padding: 0.6rem 1.2rem;
-    margin: 1.5rem 0;
-    font-size: 1.1rem;
+  .doc-title h1 {
+    font-size: 2em;
+    font-weight: bold;
+    letter-spacing: 0.01em;
+    margin-bottom: 8px;
+  }
+  .doc-title h2 {
+    font-size: 1.05em;
+    font-weight: normal;
     font-style: italic;
-    color: var(--mid);
-    background: var(--highlight);
-    border-radius: 0 4px 4px 0;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+  .doc-meta {
+    font-size: 0.88em;
+    color: var(--muted);
+    border-top: 1px solid var(--light-rule);
+    padding-top: 10px;
   }
 
-  .tbl-wrap { overflow-x: auto; margin: 1.5rem 0; }
-  table { width: 100%; border-collapse: collapse; font-family: 'Inter', sans-serif; font-size: 0.85rem; }
-  thead tr { background: var(--accent); color: #fff; }
-  thead th { padding: 0.6rem 0.9rem; text-align: left; font-weight: 500; letter-spacing: 0.04em; }
-  tbody tr { border-bottom: 1px solid var(--rule); }
-  tbody tr:nth-child(even) { background: var(--panel); }
-  tbody td { padding: 0.55rem 0.9rem; vertical-align: top; line-height: 1.5; }
-  tbody td:first-child { font-weight: 500; color: var(--accent); }
+  /* Section headings */
+  h3.section {
+    font-size: 1.13em;
+    font-weight: bold;
+    margin: 52px 0 14px;
+    letter-spacing: 0.02em;
+    border-bottom: 1px solid var(--light-rule);
+    padding-bottom: 5px;
+  }
+  h3.subsection {
+    font-size: 1.02em;
+    font-weight: bold;
+    margin: 28px 0 10px;
+    color: #222;
+  }
 
-  .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
-  .stat-card { background: var(--highlight); border: 1px solid var(--rule); border-top: 3px solid var(--accent2); border-radius: 4px; padding: 1rem 1.1rem; }
-  .stat-num { font-family: 'Inter', sans-serif; font-size: 1.5rem; font-weight: 600; color: var(--accent); line-height: 1.1; margin-bottom: 0.3rem; }
-  .stat-label { font-family: 'Inter', sans-serif; font-size: 0.75rem; color: var(--muted); line-height: 1.4; }
-  .stat-source { font-family: 'Inter', sans-serif; font-size: 0.68rem; color: var(--muted); margin-top: 0.4rem; font-style: italic; }
+  p { margin-bottom: 1em; }
+
+  /* Pull quote / phase transition statement */
+  .pull {
+    border-left: 4px solid var(--rule);
+    padding: 12px 20px;
+    margin: 24px 0;
+    font-size: 1.05em;
+    font-style: italic;
+    color: #222;
+    background: #f9f9f7;
+  }
+
+  /* Framed boxes */
+  .frame {
+    border: 1.5px solid var(--frame-border);
+    background: var(--frame-bg);
+    padding: 18px 24px;
+    margin: 20px 0;
+    position: relative;
+  }
+  .frame-label {
+    position: absolute;
+    top: -11px;
+    left: 16px;
+    background: var(--frame-bg);
+    padding: 0 8px;
+    font-size: 0.76em;
+    font-weight: bold;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--rule);
+    border: 1px solid var(--frame-border);
+  }
+  .frame.definition  { border-left: 4px solid #333; }
+  .frame.derived     { border-left: 4px solid #666; }
+  .frame.consequence { border-left: 4px solid #888; }
+  .frame.proof       { border-left: 4px solid #222; background: #f2f2f0; }
+  .frame.moat        { border-left: 4px solid #111; background: #eeeeec; }
+  .frame.note        { border-left: 4px solid #aaa; font-style: italic; }
+  .frame.invitation  { border-left: 4px solid var(--rule); background: #f0f0ee; }
 
   .math-block {
-    background: var(--panel);
-    border: 1px solid var(--rule);
-    border-left: 3px solid var(--accent);
-    border-radius: 0 4px 4px 0;
-    padding: 1.2rem 1.5rem;
-    margin: 1.5rem 0;
+    margin: 14px 0;
+    overflow-x: auto;
     text-align: center;
-    font-size: 1.15rem;
   }
-  .math-label { font-family: 'Inter', sans-serif; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; }
 
-  .op-seq { display: flex; align-items: center; justify-content: center; gap: 0.4rem; flex-wrap: wrap; margin: 1rem 0 0.5rem; font-family: 'Inter', sans-serif; font-size: 0.9rem; }
-  .op-badge { background: var(--accent); color: #fff; width: 2rem; height: 2rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 0.85rem; }
-  .op-arrow { color: var(--muted); font-size: 1rem; }
-
-  .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
-  .compare-col { border: 1px solid var(--rule); border-radius: 4px; overflow: hidden; }
-  .compare-head { font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.5rem 0.9rem; }
-  .compare-col.conventional .compare-head { background: #e8e8ee; color: var(--mid); }
-  .compare-col.abrce .compare-head { background: var(--accent); color: #fff; }
-  .compare-body { padding: 0.8rem 0.9rem; }
-  .compare-body ul { list-style: none; padding: 0; }
-  .compare-body li { font-family: 'Inter', sans-serif; font-size: 0.82rem; padding: 0.3rem 0; border-bottom: 1px solid var(--rule); color: var(--mid); line-height: 1.4; }
-  .compare-body li:last-child { border-bottom: none; }
-  .compare-col.abrce .compare-body li { color: var(--accent); }
-
-  .lead-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
-  .lead-card { background: var(--highlight); border: 1px solid var(--rule); border-radius: 4px; padding: 1.1rem 1.2rem; }
-  .lead-domain { font-family: 'Inter', sans-serif; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 0.3rem; }
-  .lead-num { font-family: 'Inter', sans-serif; font-size: 2rem; font-weight: 700; color: var(--accent); line-height: 1; margin-bottom: 0.2rem; }
-  .lead-sub { font-family: 'Inter', sans-serif; font-size: 0.78rem; color: var(--mid); margin-bottom: 0.6rem; }
-  .lead-value { font-family: 'Inter', sans-serif; font-size: 0.8rem; color: var(--accent2); font-weight: 500; }
-
-  /* ENGAGEMENT MODEL */
-  .engage-funnel { margin: 1.5rem 0; }
-  .engage-step { display: flex; gap: 1.2rem; margin-bottom: 0.6rem; align-items: stretch; }
-  .engage-step-num {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
+  /* Tables */
+  table.struct {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 16px 0;
+    font-size: 0.94em;
+  }
+  table.struct td, table.struct th {
+    padding: 9px 14px;
+    border: 1px solid #ccc;
+    vertical-align: top;
+  }
+  table.struct thead td {
+    background: #e8e8e6;
+    font-weight: bold;
+    font-size: 0.82em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
+  }
+  table.struct tbody tr:nth-child(even) td { background: #fafaf8; }
+
+  table.operators {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 16px 0;
+    font-size: 0.93em;
+  }
+  table.operators th {
+    background: #1a1a1a;
     color: #fff;
-    background: var(--accent);
-    border-radius: 4px;
-    padding: 0.5rem 0.8rem;
-    display: flex;
-    align-items: center;
-    min-width: 3.5rem;
-    justify-content: center;
-    flex-shrink: 0;
+    padding: 9px 14px;
+    text-align: left;
+    font-size: 0.81em;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
   }
-  .engage-step-body {
-    border: 1px solid var(--rule);
-    border-left: 3px solid var(--accent2);
-    border-radius: 0 4px 4px 0;
-    padding: 0.7rem 1rem;
-    flex: 1;
+  table.operators td {
+    padding: 10px 14px;
+    border: 1px solid #ccc;
+    vertical-align: top;
   }
-  .engage-step-title {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--accent);
-    margin-bottom: 0.25rem;
+  table.operators tr:nth-child(even) td { background: #fafaf8; }
+
+  table.econ {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 16px 0;
+    font-size: 0.93em;
   }
-  .engage-step-desc {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.8rem;
-    color: var(--mid);
-    line-height: 1.5;
+  table.econ th {
+    background: #2a2a2a;
+    color: #fff;
+    padding: 9px 14px;
+    text-align: left;
+    font-size: 0.81em;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
   }
-  .engage-connector {
-    display: flex;
-    justify-content: flex-start;
-    padding-left: 2.55rem;
-    margin-bottom: 0.4rem;
+  table.econ td {
+    padding: 9px 14px;
+    border: 1px solid #ccc;
+    vertical-align: top;
   }
-  .engage-connector-line {
-    width: 2px;
-    height: 1rem;
-    background: var(--accent2);
-    opacity: 0.4;
+  table.econ tr:nth-child(even) td { background: #fafaf8; }
+
+  table.lead {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 16px 0;
+    font-size: 0.94em;
+  }
+  table.lead th {
+    background: #1a1a1a;
+    color: #fff;
+    padding: 9px 14px;
+    text-align: left;
+    font-size: 0.81em;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  table.lead td {
+    padding: 10px 14px;
+    border: 1px solid #ccc;
+    vertical-align: top;
+  }
+  table.lead tr:nth-child(even) td { background: #fafaf8; }
+
+  ul.body-list { margin: 8px 0 12px 24px; }
+  ul.body-list li { margin-bottom: 6px; }
+
+  .section-rule {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 52px 0 0;
   }
 
-  /* INDUSTRY GRID */
-  .industry-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
-  .industry-card {
-    border: 1px solid var(--rule);
-    border-top: 3px solid var(--accent2);
-    border-radius: 4px;
-    padding: 1rem;
+  .ruling {
+    font-size: 0.88em;
+    color: var(--muted);
+    border-top: 1px solid var(--light-rule);
+    margin-top: 56px;
+    padding-top: 16px;
+    font-style: italic;
+    text-align: center;
   }
-  .industry-icon { font-size: 1.4rem; margin-bottom: 0.4rem; }
-  .industry-title { font-family: 'Inter', sans-serif; font-size: 0.88rem; font-weight: 600; color: var(--accent); margin-bottom: 0.4rem; }
-  .industry-body { font-family: 'Inter', sans-serif; font-size: 0.76rem; color: var(--mid); line-height: 1.5; }
 
-  /* REPO STRIP */
-  .repo-strip { background: var(--panel); border: 1px solid var(--rule); border-radius: 4px; padding: 1rem 1.2rem; margin: 1.5rem 0; font-family: 'Inter', sans-serif; font-size: 0.82rem; color: var(--mid); }
-  .repo-strip strong { color: var(--accent); }
-  .repo-strip a { color: var(--accent2); text-decoration: none; }
-  .repo-list { margin-top: 0.6rem; display: flex; flex-direction: column; gap: 0.3rem; }
-  .repo-row { display: flex; gap: 0.8rem; align-items: baseline; }
-  .repo-badge { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; background: var(--accent); color: #fff; border-radius: 3px; padding: 0.1rem 0.4rem; flex-shrink: 0; }
-  .repo-desc { font-size: 0.78rem; color: var(--mid); }
-
-  .lineage { display: flex; align-items: center; justify-content: center; gap: 0; margin: 2rem 0; flex-wrap: wrap; }
-  .lin-item { text-align: center; padding: 0.8rem 1.2rem; background: var(--panel); border: 1px solid var(--rule); }
-  .lin-item:first-child { border-radius: 4px 0 0 4px; }
-  .lin-item:last-child { border-radius: 0 4px 4px 0; background: var(--accent); color: #fff; }
-  .lin-name { font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 600; color: var(--accent); }
-  .lin-item:last-child .lin-name { color: #fff; }
-  .lin-claim { font-family: 'Inter', sans-serif; font-size: 0.72rem; color: var(--muted); margin-top: 0.2rem; }
-  .lin-item:last-child .lin-claim { color: rgba(255,255,255,0.75); }
-  .lin-arrow { font-size: 1.2rem; color: var(--muted); padding: 0 0.2rem; }
-
-  footer { margin-top: 4rem; padding-top: 1.5rem; border-top: 2px solid var(--accent); font-family: 'Inter', sans-serif; font-size: 0.75rem; color: var(--muted); text-align: center; line-height: 2; }
-  footer a { color: var(--accent2); text-decoration: none; }
-
-  @media print {
-    body { padding: 1.5rem; font-size: 0.95rem; }
-    .cover { padding: 2rem 0; }
-    .stat-grid { grid-template-columns: repeat(2,1fr); }
-    .compare, .lead-grid { grid-template-columns: 1fr 1fr; }
-    .industry-grid { grid-template-columns: repeat(2,1fr); }
+  /* MathJax overflow handling */
+  mjx-container {
+    overflow-x: auto;
+    overflow-y: hidden;
+    max-width: 100%;
   }
 </style>
 </head>
 <body>
 
-<!-- COVER -->
-<div class="cover">
-  <div class="cover-label">Investor Document · 2026</div>
+<!-- ============================================================ -->
+<!-- TITLE                                                        -->
+<!-- ============================================================ -->
+<div class="doc-title">
   <h1>The Clarity Dividend</h1>
-  <div class="subtitle">How Metatron Dynamics Unlocks Economic Value<br>from Rigorous Information Processing</div>
-  <div class="cover-rule"></div>
-  <div class="cover-meta">
-    <strong>Metatron Dynamics</strong><br>
-    Robin Macomber, Founder<br>
-    Bruce Stephenson, CTO — Energy Physics<br><br>
-    <a href="https://relationalrelativity.dev">relationalrelativity.dev</a> &nbsp;·&nbsp;
-    <a href="https://github.com/Relational-Relativity-Corporation">github.com/Relational-Relativity-Corporation</a>
+  <h2>How Metatron Dynamics Unlocks the Economic Value of Rigorous Information Processing</h2>
+  <div class="doc-meta">
+    <strong>Metatron Dynamics</strong> &nbsp;|&nbsp; Robin Macomber, Founder &nbsp;|&nbsp; Bruce Stephenson, CTO, Energy Physics
   </div>
 </div>
 
-<!-- I -->
-<div class="section">
-  <h2><span class="num">I.</span> The Economic Problem</h2>
-  <h3>Modern systems operate on assumptions they have never declared</h3>
-  <p>Modern organizations operate complex information systems — manufacturing pipelines, supply chains, financial models, and machine learning systems — whose outputs are assumed to be valid.</p>
-  <p>That assumption is frequently false.</p>
-  <p>When operating conditions move outside the system's implicit domain, the system does not stop. It continues processing. The outputs become invalid, but the system produces no structural indication that validity has been lost.</p>
-  <div class="stat-grid">
-    <div class="stat-card">
-      <div class="stat-num">$1.4T</div>
-      <div class="stat-label">Annual unplanned downtime loss across the 500 largest companies</div>
-      <div class="stat-source">Siemens, True Cost of Downtime, 2024</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-num">$184M</div>
-      <div class="stat-label">Average annual supply chain disruption loss per organization</div>
-      <div class="stat-source">Interos</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-num">91%</div>
-      <div class="stat-label">Machine learning systems experiencing performance degradation</div>
-      <div class="stat-source">MIT, 32-dataset study</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-num">75%</div>
-      <div class="stat-label">Businesses reporting AI performance decline without monitoring</div>
-      <div class="stat-source">Galileo AI, 2024</div>
-    </div>
-  </div>
-  <p>These are not edge cases. They are structural consequences of how modern systems are built.</p>
-  <p>This creates a structural blind spot: systems continue operating after they are no longer valid, and no current tool detects when that transition begins.</p>
+<!-- ============================================================ -->
+<!-- SECTION I                                                    -->
+<!-- ============================================================ -->
+<h3 class="section">I. &nbsp; What the Species Has Always Done</h3>
+
+<p>Humans are information processors. Every tool, institution, language, and technology ever built is, at its core, an attempt to move information more reliably, transform it more accurately, and extract more value from it. The arc of human economic progress is, without exception, the arc of getting better at formalizing how that processing works.</p>
+
+<table class="struct">
+  <thead><tr><td>Formalization</td><td>What Was Declared</td><td>Economic Consequence</td></tr></thead>
+  <tbody>
+    <tr><td>Agricultural revolution</td><td>Relationship between seasonal information and human action</td><td>Stable food supply; sedentary civilization</td></tr>
+    <tr><td>Writing</td><td>Information storage and transmission across time</td><td>Law, commerce, accumulated knowledge</td></tr>
+    <tr><td>Printing press</td><td>Democratized information distribution</td><td>Scientific revolution; Reformation; modern states</td></tr>
+    <tr><td>Factory system</td><td>Transformation of material information — inputs, tolerances, outputs — into repeatable production</td><td>Industrial economy</td></tr>
+  </tbody>
+</table>
+
+<div class="pull">
+  Each formalization produced an economic discontinuity. Not incremental improvement — a phase transition in what was possible. We are at the threshold of another one.
 </div>
 
-<!-- II -->
-<div class="section">
-  <h2><span class="num">II.</span> The Structural Cause</h2>
-  <h3>Every information processing system operates within a domain</h3>
-  <p>A <em>domain</em> is the set of conditions under which a system's outputs are valid. In current systems, that domain is never formally declared — it is embedded implicitly in data, models, and assumptions. When the domain shifts:</p>
-  <div class="compare">
-    <div class="compare-col conventional">
-      <div class="compare-head">What happens</div>
-      <div class="compare-body"><ul>
-        <li>System continues processing</li>
-        <li>Errors accumulate silently</li>
-        <li>Detection occurs after degradation is visible</li>
-        <li>Cascade is already in motion</li>
-      </ul></div>
-    </div>
-    <div class="compare-col abrce">
-      <div class="compare-head">What should happen</div>
-      <div class="compare-body"><ul>
-        <li>Domain boundary is detected in advance</li>
-        <li>System signals approach before failure</li>
-        <li>Intervention window is preserved</li>
-        <li>Cascade is prevented</li>
-      </ul></div>
-    </div>
-  </div>
-  <div class="pull">The cost is not the failure event. The cost is the interval between domain shift and detection.</div>
+<!-- ============================================================ -->
+<!-- SECTION II                                                   -->
+<!-- ============================================================ -->
+<hr class="section-rule">
+<h3 class="section">II. &nbsp; The Giants</h3>
+
+<p>The twentieth century produced a sequence of formalizations that define the modern economy. Each followed the same pattern: someone looked at something humans were already doing intuitively and asked — what are the precise mathematical conditions under which this works? The answer, each time, unlocked an entirely new class of economic activity.</p>
+
+<table class="struct">
+  <thead><tr><td>Formalization</td><td>What Was Declared</td><td>Economic Descendants</td></tr></thead>
+  <tbody>
+    <tr><td><strong>Shannon (1948)</strong></td><td>Information has measurable structure. Noise, signal, and channel capacity are mathematical quantities.</td><td>Internet, mobile communications, digital storage — all downstream of a single paper.</td></tr>
+    <tr><td><strong>Turing (1936)</strong></td><td>Any well-defined information transformation can be executed mechanically.</td><td>Everything running on silicon.</td></tr>
+    <tr><td><strong>Wiener</strong></td><td>The mathematics of systems that observe their own output and adjust.</td><td>Autopilot, supply chain management, modern control systems.</td></tr>
+  </tbody>
+</table>
+
+<div class="frame note">
+  <span class="frame-label">Position</span>
+  Shannon formalized information transmission. Turing formalized information transformation. Metatron formalizes the boundary conditions under which information processing remains valid.
 </div>
 
-<!-- III -->
-<div class="section">
-  <h2><span class="num">III.</span> The Breakthrough</h2>
-  <h3>Metatron Dynamics detects when systems leave their valid domain</h3>
-  <p>This introduces a capability not present in current monitoring or observability systems: a system can detect <em>approach to its domain boundary</em> before output degradation occurs.</p>
-  <p>In practical terms, this means detecting when a system's outputs are about to become unreliable — before cost, failure, or drift becomes visible.</p>
-  <div class="lineage">
-    <div class="lin-item"><div class="lin-name">Shannon</div><div class="lin-claim">Formalized the channel</div></div>
-    <div class="lin-arrow">→</div>
-    <div class="lin-item"><div class="lin-name">Turing</div><div class="lin-claim">Formalized computation</div></div>
-    <div class="lin-arrow">→</div>
-    <div class="lin-item"><div class="lin-name">Wiener</div><div class="lin-claim">Formalized feedback</div></div>
-    <div class="lin-arrow">→</div>
-    <div class="lin-item"><div class="lin-name">Metatron</div><div class="lin-claim">Extends formalization to operating domains</div></div>
-  </div>
+<!-- ============================================================ -->
+<!-- SECTION III                                                  -->
+<!-- ============================================================ -->
+<hr class="section-rule">
+<h3 class="section">III. &nbsp; The Gap That Remains</h3>
+
+<p>Every information processing system — every model, every algorithm, every automated decision pipeline — operates on a domain. A domain is the set of conditions under which the system's outputs are valid.</p>
+
+<div class="frame definition">
+  <span class="frame-label">The Problem</span>
+  <p>That domain is almost never formally declared. It is embedded in training data, in spreadsheet formulas, in the judgment of the engineer who built the system — but it is not written down in a mathematically examinable form before processing begins.</p>
+  <p>The consequences are not speculative. They are measured in dollars, and the measurement is precise.</p>
 </div>
 
-<!-- IV -->
-<div class="section">
-  <h2><span class="num">IV.</span> Proof — Lead Time as Economic Value</h2>
-  <h3>Independently verified, publicly reproducible</h3>
-  <p>The framework has been applied to two independently verified simulation environments using a strict two-phase protocol: system dynamics are verified independently first; detection is layered on top only after baseline behavior is confirmed.</p>
-  <div class="lead-grid">
-    <div class="lead-card">
-      <div class="lead-domain">Multi-agent supply chain simulation</div>
-      <div class="lead-num">88</div>
-      <div class="lead-sub">steps ahead of conventional threshold detection</div>
-      <div class="lead-value">~$11M avoided per event at $125K/hr<br>~$202M per event at automotive scale</div>
-    </div>
-    <div class="lead-card">
-      <div class="lead-domain">Robotics fleet task-queue model</div>
-      <div class="lead-num">82</div>
-      <div class="lead-sub">steps ahead of conventional failure indicators</div>
-      <div class="lead-value">Sufficient window to redistribute load and schedule maintenance before cascade</div>
-    </div>
-  </div>
-  <div class="pull">The lead time is a mathematical consequence of making the domain explicit. It cannot be produced by any approach that does not begin with a declared domain.</div>
+<!-- ============================================================ -->
+<!-- SECTION IV                                                   -->
+<!-- ============================================================ -->
+<hr class="section-rule">
+<h3 class="section">IV. &nbsp; The Economic Cost of Undeclared Domains</h3>
+
+<h3 class="subsection">Manufacturing and Supply Chain</h3>
+
+<p>When a production system encounters conditions outside its implicit operating domain — a supplier failure, a demand shock, a regime shift in input costs — it does not raise an exception. It continues processing. Those outputs are now invalid, but nothing announces this. By the time the failure becomes visible, the cascade is already in motion.</p>
+
+<table class="econ">
+  <tr><th>Metric</th><th>Figure</th><th>Source</th></tr>
+  <tr><td>Annual unplanned downtime loss, 500 largest companies</td><td><strong>$1.4 trillion</strong> — 11% of total revenues, up 62% from 2019</td><td>Siemens, <em>True Cost of Downtime</em>, 2024</td></tr>
+  <tr><td>Frequency</td><td>Two-thirds of industrial plants: at least once per month</td><td>Siemens</td></tr>
+  <tr><td>Average cost per hour</td><td>$125,000 globally; $2.3 million in automotive</td><td>ABB; Siemens</td></tr>
+  <tr><td>Unplanned vs. planned downtime premium</td><td>35% more per minute — because no one saw it coming</td><td>Siemens</td></tr>
+  <tr><td>Average annual supply chain disruption loss</td><td><strong>$184 million</strong> per organization</td><td>Interos</td></tr>
+  <tr><td>10-year disruption impact</td><td>Equivalent to <strong>45% of one year's profits</strong></td><td>McKinsey</td></tr>
+</table>
+
+<div class="frame note">
+  <span class="frame-label">Structural Interpretation</span>
+  The word "unplanned" in every one of these statistics carries the same meaning: the system's operating domain shifted, and no one knew — because no domain had been declared.
 </div>
 
-<!-- V -->
-<div class="section">
-  <h2><span class="num">V.</span> The Mechanism — ABRCE Framework</h2>
-  <h3>A bounded operator composition over a declared domain</h3>
-  <p style="font-style:italic; color:var(--mid);">The following defines the mechanism formally. Understanding the equations is not required to understand the value, but they describe the structure that makes early detection possible.</p>
-  <p>The declared domain \( D \) is defined as:</p>
-  <div class="math-block">
-    <div class="math-label">Domain Declaration</div>
-    \[ D := \{ x \in \mathbb{R}^n \mid n < \infty,\; |x[i]| < \infty \; \forall\, i \in \{0,\ldots,n-1\} \} \]
-  </div>
-  <p>Composite evolution over \( D \) is defined as:</p>
-  <div class="math-block">
-    <div class="math-label">Composite Evolution Operator</div>
-    \[ E(x, \rho) = C\!\left(R\!\left(B\!\left(A(x)\right),\, \rho\right)\right) \]
-    <div class="op-seq" style="margin-top:0.9rem;">
-      <div class="op-badge">A</div><div class="op-arrow">→</div>
-      <div class="op-badge">B</div><div class="op-arrow">→</div>
-      <div class="op-badge">R</div><div class="op-arrow">→</div>
-      <div class="op-badge">C</div><div class="op-arrow">→</div>
-      <div class="op-badge">E</div>
-    </div>
-  </div>
-  <div class="tbl-wrap">
-    <table>
-      <thead>
-        <tr><th>Operator</th><th>Definition</th><th>Function</th><th>Economic Translation</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>A — Admissibility</td>
-          <td>\( A(x)[i] = x[i] - \bar{x} \)</td>
-          <td>Declares the domain. All subsequent operations are valid only within \( D \).</td>
-          <td>You define what game you are playing before you place a bet.</td>
-        </tr>
-        <tr>
-          <td>B — Local Coherence</td>
-          <td>\( B(x)[i] = x[i] + x[i{+}1] \)</td>
-          <td>Measures how local relationships deviate from expected structure within \( D \).</td>
-          <td>You see the first tremor before the building moves.</td>
-        </tr>
-        <tr>
-          <td>R — Relational Transformation</td>
-          <td>\( R(x)[i] = x[i] + \rho\,(x[i{+}1] - x[i{-}1]) \)</td>
-          <td>Applies system-specific relational geometry \( \rho \), preserving nonzero distinctions within \( D \).</td>
-          <td>The framework speaks the language of your specific system.</td>
-        </tr>
-        <tr>
-          <td>C — Bounded Stabilization</td>
-          <td>\( C(x)[i] = \dfrac{x[i]}{1 + |x[i]|} \)</td>
-          <td>Constrains output within \( D \) by construction. \( D \)-closure is structural, not a post-hoc check.</td>
-          <td>The warning is bounded and actionable — a decision input, not a data stream.</td>
-        </tr>
-        <tr>
-          <td>E — Composite Evolution</td>
-          <td>\( E(x,\rho) = C(R(B(A(x)),\rho)) \)</td>
-          <td>\( D \)-closed by \( C \). Applied exactly once per evolution pass.</td>
-          <td>The 88-step and 82-step lead times are outputs of \( E \) — mathematical consequences of declared domain boundaries.</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+<h3 class="subsection">Machine Learning and AI Systems</h3>
+
+<p>The modern enterprise is increasingly governed by machine learning models — credit risk, demand forecasting, fraud detection, customer retention, pricing. Each was trained on data from a specific domain. Each is deployed into a world where that domain continuously shifts.</p>
+
+<table class="econ">
+  <tr><th>Metric</th><th>Figure</th><th>Source</th></tr>
+  <tr><td>ML models experiencing performance degradation</td><td><strong>91%</strong> — 32-dataset study across four industries</td><td>MIT</td></tr>
+  <tr><td>Businesses observing AI performance decline</td><td><strong>75%</strong> without proper monitoring</td><td>Galileo AI, 2024</td></tr>
+  <tr><td>Revenue losses from AI errors</td><td>Over <strong>50%</strong> of businesses report measurable losses</td><td>Galileo AI, 2024</td></tr>
+  <tr><td>Error rate increase after 6 months without update</td><td><strong>+35%</strong> on new data</td><td>—</td></tr>
+</table>
+
+<div class="frame derived">
+  <span class="frame-label">Unified Structural Diagnosis</span>
+  <p>Across manufacturing, logistics, finance, healthcare, and technology, the structure is identical: a system processes information correctly within its domain, the domain shifts, the system continues processing, and the error compounds silently until it becomes a crisis.</p>
+  <p><strong>The cost is not the crisis. The cost is the interval between the domain shift and its detection.</strong> That interval exists by structural necessity when no domain has been declared. It is eliminated when the domain is declared.</p>
 </div>
 
-<!-- VI -->
-<div class="section">
-  <h2><span class="num">VI.</span> The Acceleration Inversion</h2>
-  <h3>Performance improves as volume increases — the inverse of every conventional system</h3>
-  <p>This is the inverse of conventional systems, where increased scale typically degrades signal quality and detection reliability.</p>
-  <div class="compare">
-    <div class="compare-col conventional">
-      <div class="compare-head">Conventional monitoring</div>
-      <div class="compare-body"><ul>
-        <li>Increased scale</li>
-        <li>→ increased noise</li>
-        <li>→ degraded detection</li>
-        <li>→ alert fatigue</li>
-      </ul></div>
-    </div>
-    <div class="compare-col abrce">
-      <div class="compare-head">ABRCE framework</div>
-      <div class="compare-body"><ul>
-        <li>Increased coherent volume</li>
-        <li>→ stronger constraint field</li>
-        <li>→ improved detection</li>
-        <li>→ smaller admissible interpretation space</li>
-      </ul></div>
-    </div>
-  </div>
-  <div class="math-block">
-    <div class="math-label">Derived Result — Acceleration Inversion</div>
-    \[ \text{constraint\_strength}(B) \;:=\; \text{coherence}(B) \times \text{volume}(B) \]
-  </div>
-  <p>Under acceleration with maintained coherence, Verifier effectiveness increases while Generator drift risk widens the gap monotonically. The ABRCE detection advantage does not degrade under scale — it compounds.</p>
+<!-- ============================================================ -->
+<!-- SECTION V                                                    -->
+<!-- ============================================================ -->
+<hr class="section-rule">
+<h3 class="section">V. &nbsp; The Mathematics of Clarity</h3>
+
+<p>Metatron Dynamics has formalized the stability conditions for bounded information processing systems. The framework is called ABRCE — an operator calculus whose complete composition is:</p>
+
+<div class="frame definition">
+  <span class="frame-label">ABRCE Composition</span>
+  <div class="math-block">\[ E(x,\,\rho) \;=\; C\!\Big(R\!\big(B\!\left(A(x)\right),\;\rho\big)\Big) \]</div>
+  <p>Canonical operator ordering: \( A \to B \to R \to C \to E \).</p>
+  <p>This is not a model fitted to data. It is a sequence of operations that reveals the relational structure already present in any system. The operators do not change across domains. \( \rho \) — the relational parameter — encodes the structural geometry specific to each system.</p>
 </div>
 
-<!-- VII -->
-<div class="section">
-  <h2><span class="num">VII.</span> The Business Model</h2>
-  <h3>Open tools as proof. Consulting engagement as value delivery.</h3>
+<table class="operators">
+  <tr>
+    <th>Operator</th>
+    <th>Mathematical Function</th>
+    <th>Economic Translation</th>
+  </tr>
+  <tr>
+    <td><strong>\( A \) — Admissibility</strong></td>
+    <td>Declares the domain \( D \) within which all subsequent operations are valid:
+    <div class="math-block">\[ D \;:=\; \bigl\{\, x \in \mathbb{R}^{n} \;\big|\; n < \infty,\;\; \lvert x_i \rvert < \infty \;\;\forall\, i \,\bigr\} \]</div>
+    Produces \( A(x) \) — an admissible object. \( B \) is defined only on \( A(x) \).</td>
+    <td>You define what game you are playing before you place a bet. The moment conditions approach the declared boundary, the framework detects it — not retrospectively, but in advance. This single step eliminates the entire class of failures that arise from implicit assumptions.</td>
+  </tr>
+  <tr>
+    <td><strong>\( B \) — Local Coherence</strong></td>
+    <td>Applied to \( A(x) \). Measures how each local relationship deviates from its neighbors — how the relational structure of the system is shifting at the field level, before that shift propagates globally.</td>
+    <td>You see the first tremor before the building moves. Not a threshold alarm — a measurement of how the neighborhood of each element is beginning to depart from coherence within the declared domain.</td>
+  </tr>
+  <tr>
+    <td><strong>\( R \) — Relational Transformation</strong></td>
+    <td>Transforms the accumulated local signal through \( \rho \) — the relational parameter encoding the specific structural geometry of the system under analysis. Preserves nonzero relational distinctions within \( D \).</td>
+    <td>The framework speaks the language of your actual system. \( \rho \) is where your system's identity enters the computation. The same operators apply across all domains; \( \rho \) is what makes the output domain-specific.</td>
+  </tr>
+  <tr>
+    <td><strong>\( C \) — Bounded Stabilization</strong></td>
+    <td>Constrains the output of \( R \) within \( D \) by construction. \( D \)-closure is a structural property of \( C \)'s definition, not a post-hoc check.</td>
+    <td>The warning is actionable. A specific, bounded, measurable deviation that has reached a threshold your domain declaration defines as significant. A decision input, not a data stream.</td>
+  </tr>
+  <tr>
+    <td><strong>\( E \) — Composite Evolution</strong></td>
+    <td>The result of the full composition applied once per pass. \( D \)-closed by \( C \). Not a fifth operator — the output of the sequence \( A \to B \to R \to C \).</td>
+    <td>The 88-step and 82-step lead times are outputs of \( E \) — of the full composition. The lead time is a mathematical consequence of declared domain boundaries, not a feature of the software.</td>
+  </tr>
+</table>
 
-  <p>The Metatron Dynamics business model is a consulting relationship, not a software license. The open-source tooling portfolio demonstrates the framework's rigor and reproducibility. It is the proof of capability that opens the door. The economic value is delivered through direct engagement with client systems.</p>
+<!-- SECTION V.1 — ACCELERATION INVERSION -->
+<h3 class="subsection">V.1 &nbsp; The Acceleration Inversion — Why This Compounds Under Pressure</h3>
 
-  <p><strong>The tools are not the product. They are the entry point.</strong> They expose domain violations in a form that is directly observable within the client's own system. The product is the application of domain declaration and operator enforcement to eliminate those violations before they propagate into cost.</p>
+<p>The stability mathematics produce a result that distinguishes ABRCE from every monitoring and observability approach currently in the market:</p>
 
-  <div class="pull">The tools show that domain enforcement is real. The engagement is where that enforcement is applied to the systems where failure is actually expensive.</div>
-
-  <p>The engagement model follows a deliberate sequence: the open tools establish credibility and create a concrete, verifiable entry point; the consulting relationship translates that capability into client-specific domain declarations, operator applications, and structural early warning systems.</p>
-
-  <div class="repo-strip">
-    <strong>Public tooling portfolio</strong> — openly verifiable at <a href="https://github.com/Relational-Relativity-Corporation">github.com/Relational-Relativity-Corporation</a>
-    <div class="repo-list">
-      <div class="repo-row"><span class="repo-badge">A</span><span class="repo-desc"><strong>md-domain-verifier</strong> — static admissibility check: declared domain vs. implemented domain</span></div>
-      <div class="repo-row"><span class="repo-badge">E</span><span class="repo-desc"><strong>md-runtime-guard</strong> — runtime enforcement: boundary violations detected at execution</span></div>
-      <div class="repo-row"><span class="repo-badge">A→E</span><span class="repo-desc"><strong>md-pipeline</strong> — orchestrated verification pipeline, CI-ready</span></div>
-    </div>
-  </div>
-
-  <h3 style="margin-top:2rem;">The engagement sequence</h3>
-
-  <div class="engage-funnel">
-    <div class="engage-step">
-      <div class="engage-step-num">Step 1</div>
-      <div class="engage-step-body">
-        <div class="engage-step-title">Domain Assessment</div>
-        <div class="engage-step-desc">Identify the client system's implicit operating domain. Map the assumptions currently embedded in code, data pipelines, models, or procurement logic. Establish what D is — often for the first time.</div>
-      </div>
-    </div>
-    <div class="engage-connector"><div class="engage-connector-line"></div></div>
-    <div class="engage-step">
-      <div class="engage-step-num">Step 2</div>
-      <div class="engage-step-body">
-        <div class="engage-step-title">Operator Application</div>
-        <div class="engage-step-desc">Apply the ABRCE kernel to the client's specific system geometry. Calibrate ρ to the relational structure of the client's domain. Produce the first structural early warning signal against their actual data.</div>
-      </div>
-    </div>
-    <div class="engage-connector"><div class="engage-connector-line"></div></div>
-    <div class="engage-step">
-      <div class="engage-step-num">Step 3</div>
-      <div class="engage-step-body">
-        <div class="engage-step-title">Integration</div>
-        <div class="engage-step-desc">Embed the detection layer into the client's production infrastructure — monitoring pipelines, CI systems, operational dashboards. The enforcement boundary becomes part of the system, not an external check.</div>
-      </div>
-    </div>
-    <div class="engage-connector"><div class="engage-connector-line"></div></div>
-    <div class="engage-step">
-      <div class="engage-step-num">Step 4</div>
-      <div class="engage-step-body">
-        <div class="engage-step-title">Capability Transfer</div>
-        <div class="engage-step-desc">Train internal teams in domain declaration and operator application. The client develops durable internal capacity. This is the highest-value engagement — the perspective shift becomes an organizational asset that compounds indefinitely.</div>
-      </div>
-    </div>
-  </div>
-
-  <h3 style="margin-top:2rem;">Where this applies</h3>
-  <p>The ABRCE framework applies to any system governed by software or operating under declared or undeclared assumptions. The following represent primary engagement surfaces — not an exhaustive list.</p>
-
-  <div class="industry-grid">
-    <div class="industry-card">
-      <div class="industry-icon">⚙️</div>
-      <div class="industry-title">Software Systems</div>
-      <div class="industry-body">Domain boundary enforcement in production codebases. Static verification and runtime enforcement already demonstrated in the open tooling portfolio. Natural entry point for software organizations.</div>
-    </div>
-    <div class="industry-card">
-      <div class="industry-icon">🏭</div>
-      <div class="industry-title">Manufacturing</div>
-      <div class="industry-body">Process parameters, sensor networks, and quality control systems all operate within implicit domains. Domain shift during production runs is the primary source of defect cascades.</div>
-    </div>
-    <div class="industry-card">
-      <div class="industry-icon">🚢</div>
-      <div class="industry-title">Shipping & Logistics</div>
-      <div class="industry-body">Multi-node supply chains accumulate domain violations across handoffs. The 88-step lead time demonstrated in supply chain simulation is directly applicable to logistics network monitoring.</div>
-    </div>
-    <div class="industry-card">
-      <div class="industry-icon">📦</div>
-      <div class="industry-title">Procurement</div>
-      <div class="industry-body">Procurement decisions rest on supplier and market assumptions that shift without structural warning. Domain declaration makes those assumptions explicit and detectable before commitment.</div>
-    </div>
-    <div class="industry-card">
-      <div class="industry-icon">🤖</div>
-      <div class="industry-title">AI & ML Systems</div>
-      <div class="industry-body">91% of ML systems experience performance degradation. Every model operates on a training distribution that constitutes an implicit domain. ABRCE detects departure from that domain before output quality degrades.</div>
-    </div>
-    <div class="industry-card">
-      <div class="industry-icon">⚡</div>
-      <div class="industry-title">Energy & Infrastructure</div>
-      <div class="industry-body">Safety-critical systems where cost of failure is measured in lives and regulatory consequence. Domain enforcement is not a preference — it is a structural requirement. Bruce Stephenson's energy physics background applies directly.</div>
-    </div>
-  </div>
-
-  <div class="pull">Domain universality is a mathematical property, not a marketing claim. Any finite-dimensional system processing bounded inputs is in scope.</div>
+<div class="frame derived">
+  <span class="frame-label">Derived Result — Acceleration Inversion</span>
+  <p>Under acceleration with maintained coherence, the verification advantage of the ABRCE framework increases — not decreases — as information volume grows.</p>
+  <p>As coherent volume increases, the constraint field tightens:</p>
+  <div class="math-block">\[ \mathrm{constraint\_strength}(B) \;:=\; \mathrm{coherence}(B) \;\times\; \mathrm{volume}(B) \]</div>
+  <p>Detection operates within a progressively smaller admissible interpretation space. Deviations from the declared domain become structurally easier to identify as the constraint field strengthens around them.</p>
+  <table class="struct" style="margin-top:12px;">
+    <thead><tr><td>Condition</td><td>ABRCE</td><td>Conventional Monitoring</td></tr></thead>
+    <tbody>
+      <tr><td>Low volume, low velocity</td><td>Domain declared, deviations detectable</td><td>Threshold alarms operative</td></tr>
+      <tr><td>High volume, high velocity, coherent</td><td>Detection effectiveness increases — constraint field tightens</td><td>Signal-to-noise degrades; alert fatigue increases</td></tr>
+      <tr><td>High volume, high velocity, incoherent</td><td>Incoherence is itself a detectable signal within \( D \)</td><td>No structural basis for distinguishing noise from regime shift</td></tr>
+    </tbody>
+  </table>
+  <p style="margin-top:10px;">Conventional monitoring watches outputs for degradation after it occurs. ABRCE detects approach to domain boundaries before degradation begins. Under acceleration, the gap between these two positions widens monotonically.</p>
 </div>
 
-<!-- VIII -->
-<div class="section">
-  <h2><span class="num">VIII.</span> Why Now</h2>
-  <h3>Three conditions that make this immediately relevant</h3>
-  <div class="tbl-wrap">
-    <table>
-      <thead><tr><th>Condition</th><th>Statement</th></tr></thead>
-      <tbody>
-        <tr>
-          <td>Scale of Exposure</td>
-          <td>AI and automation have increased domain-boundary exposure across all industries. Every organization that has deployed AI in the last five years has created new exposure they cannot currently see. The exposure compounds as deployment accelerates.</td>
-        </tr>
-        <tr>
-          <td>Maturity of Framework</td>
-          <td>The ABRCE framework is formalized, implemented, and publicly verifiable. The GitHub portfolio provides open, reproducible verification of all lead-time results. This is not a methodology in search of confirmation — it is a confirmed methodology in search of scale.</td>
-        </tr>
-        <tr>
-          <td>Absence of Competition</td>
-          <td>Current systems monitor outputs after degradation. No current system declares domains formally or detects boundary approach structurally. This is a structural white space, not a product gap.</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+<!-- ============================================================ -->
+<!-- SECTION V.2 — DOMAIN CLOSURE                                 -->
+<!-- ============================================================ -->
+<h3 class="subsection">V.2 &nbsp; Domain Closure as a Stability Requirement</h3>
+
+<p>The preceding operator descriptions specify <em>what</em> the framework computes. This section states <em>why</em> that computation produces stability — and why its absence permits instability even in systems that appear to function correctly.</p>
+
+<p>A system may accept valid inputs and produce correct outputs on every observed pass, and still exhibit unbounded or unstable behavior over time. The reason is structural: the system does not enforce the condition</p>
+
+<div class="math-block">\[ T(D) \;\subseteq\; D \]</div>
+
+<p>where \( D \) is the declared operating domain and \( T \) is the system's transformation. Domain closure — the requirement that \( T \) map every element of \( D \) back into \( D \) — is the mathematical condition that separates bounded evolution from eventual divergence. Without it, each pass through the system is permitted to drift incrementally beyond the domain in which its logic was validated. No individual output need be visibly wrong. The accumulation is what produces the failure.</p>
+
+<p>Most operational systems do not explicitly declare \( D \). The domain is implicit in training data, in engineering tolerances, in the professional judgment of the team that built the system. Because \( D \) is undeclared, closure under \( T \) cannot be verified before execution. The standard mitigations — monitoring, threshold alerts, periodic revalidation, post hoc correction — all operate after the domain boundary has already been crossed. The detection gap documented in Section IV is a direct consequence of this sequence: a boundary that has not been declared cannot be approached detectably.</p>
+
+<div class="frame definition">
+  <span class="frame-label">Structural Claim</span>
+  <p>The ABRCE composition enforces domain closure by construction. The Admissibility operator \( A \) declares \( D \). The Bounded Stabilization operator \( C \) constrains the output of the relational transformation to remain within \( D \). The composition</p>
+  <div class="math-block">\[ E(x,\,\rho) \;=\; C\!\Big(R\!\big(B\!\left(A(x)\right),\;\rho\big)\Big) \]</div>
+  <p>therefore satisfies \( E : D \to D \) — closure is a structural property of the operator sequence, not a post-execution check.</p>
+  <p style="margin-top: 10px;">This is what Metatron introduces: a pre-execution constraint layer that verifies domain closure and rejects parameter regimes that cannot remain bounded. The framework does not monitor for failure. It excludes the conditions under which failure becomes structurally possible.</p>
 </div>
 
-<!-- IX -->
-<div class="section">
-  <h2><span class="num">IX.</span> Independent Validation</h2>
-  <h3>Reproducibility as the evaluation standard</h3>
+<p>A minimal, reproducible demonstration of this mechanism is publicly available at <a href="https://github.com/Relational-Relativity-Corporation/domain-closure-demonstration" style="color: var(--muted);">Relational-Relativity-Corporation/domain-closure-demonstration</a>. The repository presents a bounded transformation applied with and without domain closure enforcement, showing divergence in the unconstrained case and pre-execution rejection in the constrained case. The example is deliberately minimal — the mechanism, not the application complexity, is the point.</p>
 
-  <p>Evaluation does not require prior adoption, licensing, or integration. The validation path is direct: implement the operator set independently, under shared constraints, against a defined domain problem, and observe whether structural behavior converges.</p>
+<p>The economic connection is direct: undeclared domains produce delayed detection, and delayed detection is the cost structure documented in Section IV. Enforced closure replaces delayed detection with pre-execution rejection — the cost is not reduced but structurally avoided.</p>
 
-  <p>Independent implementation under shared constraints should converge to structurally equivalent behavior under identical constraints and boundary conditions. This is a reproducibility claim, not a theoretical assertion. It is testable.</p>
+<!-- ============================================================ -->
+<!-- SECTION VI                                                   -->
+<!-- ============================================================ -->
+<hr class="section-rule">
+<h3 class="section">VI. &nbsp; The Proof — Lead Time as Economic Value</h3>
 
-  <p>The evaluation sequence is straightforward. A technically capable team reviews the operator definitions — A, B, R, C, E — and the domain declaration. Metatron engineers are available to support a joint minimal demonstration. Both teams implement independently under the same declared constraints, then compare structural output. Convergence validates the constraint set. Divergence identifies specific misalignment — a refinable signal, not a failure condition.</p>
+<p>The ABRCE framework has been applied to two independently verified simulation environments. In both cases, the methodology follows a strict two-phase protocol: simulation dynamics are verified first, independently. Detection is layered on top only after baseline behavior is confirmed.</p>
 
-  <p>Existing public repositories demonstrate that conforming implementations are concise — typically tens to low hundreds of lines of working code per operator set. Code volume is not the constraint. Understanding the constraint geometry is. In practice, a technically capable team can implement and evaluate a minimal demonstration within a few hours of focused engagement. The effort is front-loaded in constraint discipline, not distributed across engineering complexity.</p>
-
-  <p>Where convergence is observed, the framework can be treated as operationally validated within the declared domain.</p>
-
-  <p>The system is evaluated by building it, not by reading about it.</p>
+<div class="frame note">
+  <span class="frame-label">Methodology Declaration</span>
+  This is not curve-fitting. The system dynamics are established and verified before detection is applied. All results are publicly verifiable at the Relational-Relativity-Corporation GitHub organization.
 </div>
 
-<!-- X -->
-<div class="section">
-  <h2><span class="num">X.</span> The Invitation</h2>
-  <h3>Making the assumptions visible</h3>
-  <p>Every information processing system in operation today rests on assumptions that have never been written down. When those assumptions hold, the system works. When they fail, the system continues — silently, expensively, until the cascade arrives.</p>
-  <p>Metatron Dynamics makes those assumptions explicit, measurable, and detectable in advance. The open tooling is the demonstration. The consulting engagement is how that capability reaches the systems where failure is actually costly.</p>
-  <p>The engagement begins with a single question: <em>what is your system's domain, and when did it last leave it?</em> Most organizations cannot answer either half. That is the opening.</p>
-  <div class="lineage">
-    <div class="lin-item"><div class="lin-name">Shannon</div><div class="lin-claim">Formalized the channel</div></div>
-    <div class="lin-arrow">→</div>
-    <div class="lin-item"><div class="lin-name">Turing</div><div class="lin-claim">Formalized computation</div></div>
-    <div class="lin-arrow">→</div>
-    <div class="lin-item"><div class="lin-name">Wiener</div><div class="lin-claim">Formalized feedback</div></div>
-    <div class="lin-arrow">→</div>
-    <div class="lin-item"><div class="lin-name">Metatron</div><div class="lin-claim">Formalizes the domain</div></div>
-  </div>
-  <p>The economic value of that formalization is not speculative. It is already present, already compounding, in every organization processing information under assumptions they cannot currently see.</p>
-  <div class="pull">The stability conditions have been derived. The lead times have been demonstrated. The white space is confirmed. The tools are live. We are making it visible — one system at a time.</div>
-  <p style="font-family:'Inter',sans-serif; font-size:0.95rem; font-weight:500; color:var(--accent); margin-top:1.5rem;">Every system already has a domain. The only question is whether you can see it before it fails.</p>
+<table class="lead">
+  <tr>
+    <th>Domain</th>
+    <th>Lead Time</th>
+    <th>Mechanism</th>
+    <th>Dollar Multiplier</th>
+  </tr>
+  <tr>
+    <td><strong>Multi-agent supply chain simulation</strong></td>
+    <td><strong>88 steps</strong> ahead of conventional threshold detection</td>
+    <td>Field-level detection on temporal difference field \( \delta(t) = x(t) - x(t{-}1) \)</td>
+    <td>At $125K/hr: <strong>$11M avoided per event</strong><br>At automotive scale: <strong>$202M per event</strong></td>
+  </tr>
+  <tr>
+    <td><strong>Robotics fleet task-queue model</strong></td>
+    <td><strong>82 steps</strong> ahead of conventional failure indicators</td>
+    <td>Instability field detection prior to cascade. Sufficient window to redistribute load and schedule maintenance.</td>
+    <td>Scales with fleet operational clock and per-hour downtime cost of the deployment domain.</td>
+  </tr>
+</table>
+
+<div class="frame proof">
+  <span class="frame-label">The General Principle</span>
+  <p>The lead times are not fixed quantities. They are multipliers. Their dollar value is determined by the operational clock of the system to which the framework is applied. The same composition, applied to any system with a declared domain, produces lead time measured in that system's currency.</p>
+  <p>The lead time is a mathematical consequence of making the domain explicit. It cannot be produced by any approach that does not begin with a declared domain — because a boundary not declared cannot be approached detectably.</p>
 </div>
 
-<footer>
-  Metatron Dynamics &nbsp;·&nbsp; Robin Macomber, Founder &nbsp;·&nbsp; Bruce Stephenson, CTO<br>
-  <a href="https://relationalrelativity.dev">relationalrelativity.dev</a> &nbsp;·&nbsp;
-  <a href="https://github.com/Relational-Relativity-Corporation">github.com/Relational-Relativity-Corporation</a><br><br>
-  All simulation results cited in this document are publicly verifiable at the Relational-Relativity-Corporation GitHub organization.
-</footer>
+<!-- ============================================================ -->
+<!-- SECTION VII                                                  -->
+<!-- ============================================================ -->
+<hr class="section-rule">
+<h3 class="section">VII. &nbsp; The Opportunity</h3>
+
+<p>The mathematics are transferable. The transfer is nontrivial. This is Metatron's position.</p>
+
+<div class="frame moat">
+  <span class="frame-label">The Moat</span>
+  <p><strong>Metatron Dynamics provides domain-declaration and relational-field detection systems that identify regime shifts in complex operational systems before conventional monitoring detects failure.</strong></p>
+  <p style="margin-top:10px;">The framework cannot be downloaded and applied. It requires understanding what a domain declaration means for a specific system, identifying the relevant relational fields, and interpreting the structured signals the composition produces. This depth of engagement is not a barrier — it is a moat. The competitive advantage compounds with engagement depth, not with product features.</p>
+</div>
+
+<table class="struct">
+  <thead><tr><td>Entry Point</td><td>Deliverable</td><td>Value Produced</td></tr></thead>
+  <tbody>
+    <tr>
+      <td><strong>1. Applied Analysis</strong></td>
+      <td>Metatron applies ABRCE directly to client data or system.</td>
+      <td>Early warning capability, regime detection, domain boundary characterization — produced immediately, without internal capability transfer.</td>
+    </tr>
+    <tr>
+      <td><strong>2. Systems Integration</strong></td>
+      <td>Metatron builds ABRCE detection into client infrastructure — production pipelines, monitoring systems, model deployment frameworks.</td>
+      <td>Persistent early warning capability embedded in client operations.</td>
+    </tr>
+    <tr>
+      <td><strong>3. Capability Transfer</strong></td>
+      <td>Metatron teaches the methodology. Teams learn to declare domains, apply the operator framework, and interpret field-level signals.</td>
+      <td>Most durable advantage. The deepest engagement produces the longest-lasting competitive position.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="frame note">
+  <span class="frame-label">Domain Universality</span>
+  All three entry points rest on the same mathematics. A framework built on finite-dimensional bounded operators does not have preferred industries. The domain universality is a mathematical property, not a marketing claim.
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION VIII                                                 -->
+<!-- ============================================================ -->
+<hr class="section-rule">
+<h3 class="section">VIII. &nbsp; Why Now</h3>
+
+<table class="struct">
+  <thead><tr><td>Condition</td><td>Statement</td></tr></thead>
+  <tbody>
+    <tr>
+      <td><strong>Scale of exposure</strong></td>
+      <td>The $1.4 trillion annual downtime figure and the 91% ML model degradation rate are not new problems — but the scale is. Every organization that has deployed AI in the last five years has created new domain-boundary exposure they cannot currently see. The exposure compounds as deployment accelerates.</td>
+    </tr>
+    <tr>
+      <td><strong>Maturity of the mathematics</strong></td>
+      <td>The ABRCE framework is formalized, documented, and demonstrated. The GitHub portfolio provides open, reproducible verification of all lead-time results. This is not a methodology in search of confirmation. It is a confirmed methodology in search of scale.</td>
+    </tr>
+    <tr>
+      <td><strong>Absence of competition</strong></td>
+      <td>The field of ML monitoring and observability addresses symptoms — it watches outputs for degradation after the fact. ABRCE addresses the cause: the undeclared domain. No competitor offers formal domain declaration as an operational primitive. This is a structural white space, not a product gap.</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ============================================================ -->
+<!-- SECTION IX                                                   -->
+<!-- ============================================================ -->
+<hr class="section-rule">
+<h3 class="section">IX. &nbsp; The Invitation</h3>
+
+<p>Every information processing system in operation today rests on assumptions that have never been written down. When those assumptions hold, the system works. When they fail, the system continues — silently, expensively, until the cascade arrives.</p>
+
+<p>Metatron Dynamics makes those assumptions visible, formal, and monitorable. The mathematics are the same mathematics the species has always used when it was at its best — precise, bounded, honest about what they claim.</p>
+
+<div class="frame invitation">
+  <span class="frame-label">The Position</span>
+  <p>Shannon formalized the channel. Turing formalized the computation. Metatron formalizes the domain.</p>
+  <p style="margin-top: 10px;">The economic value of that formalization is not speculative. It is already present, already compounding, in every organization processing information under assumptions they cannot currently see. The stability conditions have been derived. The lead times have been demonstrated. The white space is confirmed.</p>
+  <p style="margin-top: 10px;"><strong>We are making it visible.</strong></p>
+</div>
+
+<div class="ruling">
+  <strong>Metatron Dynamics</strong> &nbsp;|&nbsp; Robin Macomber, Founder &nbsp;|&nbsp; Bruce Stephenson, CTO, Energy Physics<br><br>
+  <a href="https://relationalrelativity.dev" style="color: var(--muted);">relationalrelativity.dev</a>
+  &nbsp;|&nbsp;
+  <a href="https://github.com/orgs/Relational-Relativity-Corporation/repositories" style="color: var(--muted);">github.com/Relational-Relativity-Corporation</a>
+  <br><br>
+  <em>All simulation results cited in this document are publicly verifiable at the Relational-Relativity-Corporation GitHub organization.</em>
+</div>
 
 </body>
 </html>
